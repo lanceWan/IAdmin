@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'zh',
 
     /*
     |--------------------------------------------------------------------------
@@ -155,6 +155,16 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\BackendServiceProvider::class,
+        /**
+         * Third Party Service Providers...
+         */
+        Bican\Roles\RolesServiceProvider::class,
+        Arcanedev\LogViewer\LogViewerServiceProvider::class,
+        HieuLe\Active\ActiveServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+        Mews\Captcha\CaptchaServiceProvider::class,
 
     ],
 
@@ -201,6 +211,15 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+
+        'Active' => HieuLe\Active\Facades\Active::class,
+        'Flash' => Laracasts\Flash\Flash::class,
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+
+        //仓库
+        'UserRepository' => App\Facades\UserFacade::class,
+        'PermissionRepository' => App\Facades\PermissionFacade::class,
 
     ],
 

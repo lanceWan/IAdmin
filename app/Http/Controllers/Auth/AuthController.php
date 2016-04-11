@@ -7,6 +7,7 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -67,6 +68,20 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+        ]);
+    }
+
+    /**
+     * 验证码需要必填
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    protected function validateLogin(Request $request)
+    {
+        return Validator::make($request->all(), [
+            'email' => 'required',
+            'password' => 'required',
+            'captcha' => 'required|captcha'
         ]);
     }
 }

@@ -27,5 +27,20 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+    Route::auth();
+    Route::get('/home', 'HomeController@index');
+});
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web', 'auth']], function ($router) {
+    $router->get('/', 'IndexController@index');
+    $router->get('/i18n', 'IndexController@dataTableI18n');
+
+    /*用户*/
+    require(__DIR__ . '/Routes/UserRoute.php');
+    //权限
+    require(__DIR__ . '/Routes/PermissionRoute.php');
+    // /*菜单*/
+    // require(__DIR__ . '/Routes/MenuRoute.php');
+    // // 角色
+    // require(__DIR__ . '/Routes/RoleRoute.php');
 });
