@@ -17,10 +17,12 @@
             </div>
             <div class="actions">
               <div class="btn-group">
-                <button class="btn btn-success btn-outline btn-circle">
+                @permission('admin.permissions.create')
+                <a class="btn btn-success btn-outline btn-circle">
                   <i class="fa fa-user-plus"></i>
                   <span class="hidden-xs">{{trans('crud.create')}}</span>
-                </button>
+                </a>
+                @endpermission
               </div>
             </div>
           </div>
