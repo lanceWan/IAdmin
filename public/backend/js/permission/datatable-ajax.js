@@ -53,6 +53,15 @@ var TableDatatablesAjax = function() {
         	"data": "status",
         	"name": "status",
         	"orderable" : true,
+          render:function(data){
+            if (data == 1) {
+              return '<span class="label label-success"> 正常 </span>';
+            }else if(data == 0){
+              return '<span class="label label-warning"> 待审核 </span>';
+            }else{
+              return '<span class="label label-danger"> 禁用 </span>';
+            }
+          }
         },
         { 
         	"data": "created_at",
@@ -65,11 +74,18 @@ var TableDatatablesAjax = function() {
         	"orderable" : true,
         },
         { 
-        	"data": "id",
-        	"name": "id",
-        	"orderable" : false,
+          "data": "actionButton",
+          "name": "actionButton",
+          "type": "html",
+          "orderable" : false,
         },
     	],
+      "drawCallback": function( settings ) {
+        ajax_datatable.$('.tooltips').tooltip( {
+          placement : 'top',
+          html : true
+        });  
+      },
       "language": {
         url: '/admin/i18n'
       }

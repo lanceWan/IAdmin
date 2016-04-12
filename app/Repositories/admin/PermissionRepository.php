@@ -2,6 +2,7 @@
 namespace App\Repositories\admin;
 use App\Models\Permission;
 use Carbon\Carbon;
+use Flash;
 /**
 * 权限仓库
 */
@@ -103,16 +104,69 @@ class PermissionRepository
 		$permission = $permission->offset($start)->limit($length);
 		$permissions = $permission->get();
 
-		// if ($permissions) {
-		// 	foreach ($permissions as &$v) {
-		// 		$v['actionButton'] = $v->getActionButtonAttribute();
-		// 	}
-		// }
+		if ($permissions) {
+			foreach ($permissions as &$v) {
+				$v['actionButton'] = $v->getActionButtonAttribute();
+			}
+		}
 		return [
 			'draw' => $draw,
 			'recordsTotal' => $count,
 			'recordsFiltered' => $count,
 			'data' => $permissions,
 		];
+	}
+
+	/**
+	 * 添加权限
+	 * @author 晚黎
+	 * @date   2016-04-12T14:46:02+0800
+	 * @param  [type]                   $request [description]
+	 * @return [type]                            [description]
+	 */
+	public function store($request)
+	{
+		$permission = new Permission;
+		if ($permission->fill($request->all())->save()) {
+			Flash::success(trans('alerts.permissions.created_success'));
+			return true;
+		}
+		Flash::error(trans('alerts.permissions.created_error'));
+		return false;
+	}
+	/**
+	 * 修改视图
+	 * @author 晚黎
+	 * @date   2016-04-12T16:48:46+0800
+	 * @param  [type]                   $id [description]
+	 * @return [type]                       [description]
+	 */
+	public function edit($id)
+	{
+		$permission = Permission::find($id);
+		if ($permission) {
+			return $permission;
+		}
+		abort(404);
+	}
+	/**
+	 * 修改权限
+	 * @author 晚黎
+	 * @date   2016-04-12T17:24:53+0800
+	 * @param  [type]                   $request [description]
+	 * @return [type]                            [description]
+	 */
+	public function update($request,$id)
+	{
+		$permission = Permission::find($id);
+		if ($permission) {
+			if ($permission->fill($request->all())->save()) {
+				Flash::success(trans('alerts.permissions.updated_success'));
+				return true;
+			}
+			Flash::error(trans('alerts.permissions.updated_error'));
+			return false;
+		}
+		abort(404);
 	}
 }

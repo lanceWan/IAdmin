@@ -21,5 +21,12 @@ return[
 	'lsit' => [
 		'start' => 0,
 		'length' => 10
+	],
+	//权限相关控制
+	'permission' => [
+		// 控制是否显示查看按钮
+		'show' => false,
+		// trait 中的 action 参数
+		'action' => 'permission',
 	]
 ];

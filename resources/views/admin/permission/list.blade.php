@@ -6,8 +6,21 @@
 <link rel="stylesheet" type="text/css" href="{{asset('backend/plugins/bootstrap-select/css/bootstrap-select.min.css')}}">
 @endsection
 @section('content')
+<div class="page-bar">
+  <ul class="page-breadcrumb">
+      <li>
+          <a href="{{url('admin/')}}">{!! trans('labels.breadcrumb.home') !!}</a>
+          <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+          <span>{!! trans('labels.breadcrumb.permissionList') !!}</span>
+      </li>
+  </ul>
+</div>
+<!-- END PAGE BAR -->
 <div class="row margin-top-40">
     <div class="col-md-12">
+        @include('flash::message')
         <!-- Begin: life time stats -->
         <div class="portlet light portlet-fit portlet-datatable bordered">
           <div class="portlet-title">

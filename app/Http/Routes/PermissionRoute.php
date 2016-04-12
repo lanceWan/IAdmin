@@ -4,6 +4,13 @@
  */
 $router->group(['prefix' => 'permission'], function($router){
 	$router->get('ajaxindex', 'PermissionController@ajaxIndex');
+	$router->get('/{id}/mark/{status}', 'PermissionController@mark')
+		   ->where([
+		   	'id' => '[0-9]+',
+		   	'status' => config('admin.global.status.trash').'|'.
+		   				config('admin.global.status.audit').'|'.
+		   				config('admin.global.status.active')
+		  	]);
 });
 
 $router->resource('permission', 'PermissionController');

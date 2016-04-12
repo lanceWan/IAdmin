@@ -10,6 +10,6 @@ return [
 	'permission' => [
 		'audit' => ['fa fa-paw','待审核'],
 		'active' => ['fa fa-navicon','正常'],
-		'trash' => ['fa fa-trash','回收站']
+		'trash' => ['fa fa-trash','回收站'],
 	]
 ];
