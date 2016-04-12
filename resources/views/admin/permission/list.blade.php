@@ -31,7 +31,7 @@
             <div class="actions">
               <div class="btn-group">
                 @permission('admin.permissions.create')
-                <a class="btn btn-success btn-outline btn-circle">
+                <a href="{{url('admin/permission/create')}}" class="btn btn-success btn-outline btn-circle">
                   <i class="fa fa-user-plus"></i>
                   <span class="hidden-xs">{{trans('crud.create')}}</span>
                 </a>
