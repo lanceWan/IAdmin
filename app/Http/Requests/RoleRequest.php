@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class PermissionRequest extends Request
+class RoleRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -45,10 +45,10 @@ class PermissionRequest extends Request
     {
         return [
             'id'            => trans('labels.id'),
-            'name'          => trans('labels.permission.name'),
-            'slug'          => trans('labels.permission.slug'),
-            'description'   => trans('labels.permission.description'),
-            'status'        => trans('labels.permission.status'),     
+            'name'          => trans('labels.role.name'),
+            'slug'          => trans('labels.role.slug'),
+            'description'   => trans('labels.role.description'),
+            'status'        => trans('labels.role.status'),     
         ];
     }
 }

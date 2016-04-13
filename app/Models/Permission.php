@@ -18,4 +18,9 @@ class Permission extends Model
     	$this->action = config('admin.global.permission.action');
     }
 
+    public function role()
+    {
+    	return $this->belongsToMany('App\Models\Role');
+    }
+
 }

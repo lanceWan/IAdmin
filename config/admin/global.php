@@ -18,15 +18,38 @@ return[
 		'trash' => 99,
 		'destory' => -1
 	],
+	////////
+	//分页//
+	////////
 	'lsit' => [
 		'start' => 0,
 		'length' => 10
 	],
-	//权限相关控制
+	////////
+	//权限//
+	////////
 	'permission' => [
 		// 控制是否显示查看按钮
 		'show' => false,
 		// trait 中的 action 参数
 		'action' => 'permission',
+	],
+	////////
+	//角色//
+	////////
+	'role' => [
+		// 控制是否显示查看按钮
+		'show' => true,
+		// trait 中的 action 参数
+		'action' => 'role',
+	],
+	////////
+	//用户//
+	////////
+	'user' => [
+		// 控制是否显示查看按钮
+		'show' => false,
+		// trait 中的 action 参数
+		'action' => 'user',
 	]
 ];

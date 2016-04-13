@@ -6,12 +6,12 @@ var TableDatatablesAjax = function() {
       "serverSide": true,
       "searching" : false,
       "ajax": {
-        'url' : '/admin/permission/ajaxindex',
+        'url' : '/admin/role/ajaxindex',
         "data": function ( d ) {
           d.name = $('.filter input[name="name"]').val();
           d.slug = $('.filter input[name="slug"]').val();
           d.description = $('.filter input[name="description"]').val();
-          d.model = $('.filter input[name="model"]').val();
+          d.level = $('.filter input[name="level"]').val();
           d.status = $('.filter select[name="status"] option:selected').val();
           d.created_at_from = $('.filter input[name="created_at_from"]').val();
           d.created_at_to = $('.filter input[name="created_at_to"]').val();
@@ -44,8 +44,8 @@ var TableDatatablesAjax = function() {
           "orderable" : true,
         },
         { 
-          "data": "model",
-          "name": "model",
+          "data": "level",
+          "name": "level",
           "orderable" : true,
         },
         { 
@@ -114,7 +114,13 @@ var TableDatatablesAjax = function() {
       iconBase: "fa",
       tickIcon: "fa-check"
     });
-  };
+    /*modal事件监听*/
+    $(".modal").on("hidden.bs.modal", function() {
+         $(".modal-content").empty();
+    });
+
+	};
+
 	return {
 		init : datatableAjax
 	}

@@ -67,8 +67,30 @@ class PermissionController extends Controller
     	return redirect('admin/permission');
     }
 
+    /**
+     * 修改权限状态
+     * @author 晚黎
+     * @date   2016-04-13T09:35:06+0800
+     * @param  [type]                   $id     [description]
+     * @param  [type]                   $status [description]
+     * @return [type]                           [description]
+     */
     public function mark($id,$status)
     {
-    	echo "$id";
+    	PermissionRepository::mark($id,$status);
+        return redirect('admin/permission');
+    }
+
+    /**
+     * 删除权限
+     * @author 晚黎
+     * @date   2016-04-13T11:04:52+0800
+     * @param  [type]                   $id [description]
+     * @return [type]                       [description]
+     */
+    public function destroy($id)
+    {
+        PermissionRepository::destroy($id);
+        return redirect('admin/permission');
     }
 }

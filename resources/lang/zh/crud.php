@@ -4,7 +4,7 @@ return [
 	'cancel' 	=> '取消',
 	'submit' 	=> '保存',
 	'edit' 		=> '修改',
-	'trash' 	=> '回收站',
+	'trash' 	=> '禁用',
 	'undo' 		=> '恢复',
 	'audit' 	=> '通过',
 	'destory' 	=> '彻底删除',

@@ -84,15 +84,15 @@
                                         <span class="box"></span> {{trans('strings.permission.active.1')}} </label>
                                 </div>
                                 <div class="md-radio">
-                                    <input type="radio" id="radio54" name="status" value="{{config('admin.global.status.audit')}}" class="md-radiobtn" @if(old('status') == config('admin.global.status.audit')) checked @endif>
-                                    <label for="radio54">
+                                    <input type="radio" id="status2" name="status" value="{{config('admin.global.status.audit')}}" class="md-radiobtn" @if(old('status') === config('admin.global.status.audit')) checked @endif>
+                                    <label for="status2">
                                         <span></span>
                                         <span class="check"></span>
                                         <span class="box"></span> {{trans('strings.permission.audit.1')}} </label>
                                 </div>
                                 <div class="md-radio">
-                                    <input type="radio" id="radio54" name="status" value="{{config('admin.global.status.trash')}}" class="md-radiobtn" @if(old('status') == config('admin.global.status.trash')) checked @endif>
-                                    <label for="radio54">
+                                    <input type="radio" id="status3" name="status" value="{{config('admin.global.status.trash')}}" class="md-radiobtn" @if(old('status') == config('admin.global.status.trash')) checked @endif>
+                                    <label for="status3">
                                         <span></span>
                                         <span class="check"></span>
                                         <span class="box"></span> {{trans('strings.permission.trash.1')}} </label>

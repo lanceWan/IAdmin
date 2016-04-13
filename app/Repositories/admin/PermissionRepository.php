@@ -169,4 +169,56 @@ class PermissionRepository
 		}
 		abort(404);
 	}
+
+	/**
+	 * 修改权限状态
+	 * @author 晚黎
+	 * @date   2016-04-13T09:35:34+0800
+	 * @param  [type]                   $id     [description]
+	 * @param  [type]                   $status [description]
+	 * @return [type]                           [description]
+	 */
+	public function mark($id,$status)
+	{
+		$permission = Permission::find($id);
+		if ($permission) {
+			$permission->status = $status;
+			if ($permission->save()) {
+				Flash::success(trans('alerts.permissions.updated_success'));
+				return true;
+			}
+			Flash::error(trans('alerts.permissions.updated_error'));
+			return false;
+		}
+		abort(404);
+	}
+
+	public function destroy($id)
+	{
+		$isDelete = Permission::destroy($id);
+		if ($isDelete) {
+			Flash::success(trans('alerts.permissions.deleted_success'));
+			return true;
+		}
+		Flash::error(trans('alerts.permissions.deleted_error'));
+		return false;
+	}
+
+	/**
+	 * 获取所有权限并分组
+	 * @author 晚黎
+	 * @date   2016-04-13T13:30:34+0800
+	 * @return [type]                   [description]
+	 */
+	public function findPermissionWithArray()
+	{
+		$permission = Permission::where('status',config('admin.global.status.active'))->get();
+		$array = [];
+		if ($permission) {
+			foreach ($permission as $v) {
+				array_set($array, $v->slug, ['id' => $v->id,'name' => $v->name,'desc' => $v->description,'key' => str_random(10)]);
+			}
+		}
+		return $array;
+	}
 }

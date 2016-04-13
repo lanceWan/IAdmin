@@ -14,6 +14,7 @@ return [
     */
 
     'required' 	=> ':attribute不能为空',
-    'unique' 	=> ':attribute已存在,请更换',
+    'unique'    => ':attribute已存在,请更换',
+    'numeric' 	=> ':attribute数据类型错误,请刷新重试',
 
 ];

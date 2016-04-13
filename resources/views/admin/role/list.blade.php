@@ -13,7 +13,7 @@
           <i class="fa fa-angle-right"></i>
       </li>
       <li>
-          <span>{!! trans('labels.breadcrumb.permissionList') !!}</span>
+          <span>{!! trans('labels.breadcrumb.roleList') !!}</span>
       </li>
   </ul>
 </div>
@@ -26,12 +26,12 @@
           <div class="portlet-title">
             <div class="caption">
               <i class="icon-settings font-dark"></i>
-              <span class="caption-subject font-dark sbold uppercase">{{trans('labels.permission.list')}}</span>
+              <span class="caption-subject font-dark sbold uppercase">{{trans('labels.role.list')}}</span>
             </div>
             <div class="actions">
               <div class="btn-group">
-                @permission(config('admin.permissions.permission.create'))
-                <a href="{{url('admin/permission/create')}}" class="btn btn-success btn-outline btn-circle">
+                @permission(config('admin.permissions.role.create'))
+                <a href="{{url('admin/role/create')}}" class="btn btn-success btn-outline btn-circle">
                   <i class="fa fa-user-plus"></i>
                   <span class="hidden-xs">{{trans('crud.create')}}</span>
                 </a>
@@ -45,13 +45,13 @@
                     <thead>
                         <tr role="row" class="heading">
                           <th>#</th>
-                          <th width="15%"> {{ trans('labels.permission.name') }} </th>
-                          <th width="15%"> {{ trans('labels.permission.slug') }} </th>
-                          <th> {{ trans('labels.permission.description') }} </th>
-                          <th> {{ trans('labels.permission.model') }} </th>
-                          <th> {{ trans('labels.permission.status') }} </th>
-                          <th width="12%"> {{ trans('labels.permission.created_at') }} </th>
-                          <th width="12%"> {{ trans('labels.permission.updated_at') }} </th>
+                          <th width="15%"> {{ trans('labels.role.name') }} </th>
+                          <th width="15%"> {{ trans('labels.role.slug') }} </th>
+                          <th> {{ trans('labels.role.description') }} </th>
+                          <th> {{ trans('labels.role.level') }} </th>
+                          <th> {{ trans('labels.role.status') }} </th>
+                          <th width="12%"> {{ trans('labels.role.created_at') }} </th>
+                          <th width="12%"> {{ trans('labels.role.updated_at') }} </th>
                           <th> {{ trans('labels.action') }} </th>
                         </tr>
                         <tr role="row" class="filter">
@@ -62,7 +62,7 @@
                                     <span class="input-group-addon">
                                         <i class="fa fa-user"></i>
                                     </span>
-                                    <input type="text" class="form-control form-filter" name="name" placeholder="{{ trans('labels.permission.name') }}">
+                                    <input type="text" class="form-control form-filter" name="name" placeholder="{{ trans('labels.role.name') }}">
                                     <div class="form-control-focus"> </div>
                                 </div>
                               </div>
@@ -72,7 +72,7 @@
                                     <span class="input-group-addon">
                                         <i class="fa fa-envelope"></i>
                                     </span>
-                                    <input type="text" class="form-control form-filter" name="slug" placeholder="{{ trans('labels.permission.slug') }}">
+                                    <input type="text" class="form-control form-filter" name="slug" placeholder="{{ trans('labels.role.slug') }}">
                                     <div class="form-control-focus"> </div>
                                 </div>
                               </div>
@@ -83,7 +83,7 @@
                                     <span class="input-group-addon">
                                         <i class="fa fa-book"></i>
                                     </span>
-                                    <input type="text" class="form-control form-filter" name="description" placeholder="{{ trans('labels.permission.description') }}">
+                                    <input type="text" class="form-control form-filter" name="description" placeholder="{{ trans('labels.role.description') }}">
                                     <div class="form-control-focus"> </div>
                                 </div>
                               </div>
@@ -94,7 +94,7 @@
                                     <span class="input-group-addon">
                                         <i class="fa fa-cogs"></i>
                                     </span>
-                                    <input type="text" class="form-control form-filter" name="model" placeholder="{{ trans('labels.permission.model') }}">
+                                    <input type="text" class="form-control form-filter" name="level" placeholder="{{ trans('labels.role.level') }}">
                                     <div class="form-control-focus"> </div>
                                 </div>
                               </div>
@@ -103,8 +103,8 @@
                               <div class="form-group form-md-line-input">
                                 <select class="bs-select form-control form-filter" data-show-subtext="true" name="status">
                                   <option value="" data-icon="fa-glass icon-success">状态....</option>
-                                    @if(trans('strings.permission'))
-                                      @foreach(trans('strings.permission') as $status_key => $status_value)
+                                    @if(trans('strings.role'))
+                                      @foreach(trans('strings.role') as $status_key => $status_value)
                                         <option value="{{config('admin.global.status.'.$status_key)}}" data-icon="{{$status_value[0]}}"> {{$status_value[1]}}</option>
                                       @endforeach
                                     @endif
@@ -157,27 +157,43 @@
         <!-- End: life time stats -->
     </div>
 </div>
+<div class="modal fade" id="draggable" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Modal Title</h4>
+            </div>
+            <div class="modal-body"> Modal body goes here </div>
+            <div class="modal-footer">
+                <button type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
+                <button type="button" class="btn green">Save changes</button>
+            </div> -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
 @endsection
 @section('js')
 <script type="text/javascript" src="{{asset('backend/plugins/datatables/datatables.all.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('backend/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('backend/plugins/bootstrap-select/js/bootstrap-select.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('backend/js/permission/datatable-ajax.js')}}"></script>
+<script type="text/javascript" src="{{asset('backend/js/role/role-list.js')}}"></script>
 <script type="text/javascript" src="{{asset('backend/plugins/layer/layer.js')}}"></script>
 <script type="text/javascript">
   $(function() {
     TableDatatablesAjax.init();
     $(document).on('click','#destory',function() {
-        layer.msg('{{trans('alerts.deleteTitle')}}', {
-          time: 0, //不自动关闭
-          btn: ['{{trans('crud.destory')}}', '{{trans('crud.cancel')}}'],
-          icon: 5,
-          yes: function(index){
-            $('form[name="delete_item"]').submit();
-            layer.close(index);
-          }
+      layer.msg('{{trans('alerts.deleteTitle')}}', {
+        time: 0, //不自动关闭
+        btn: ['{{trans('crud.destory')}}', '{{trans('crud.cancel')}}'],
+        icon: 5,
+        yes: function(index){
+          $('form[name="delete_item"]').submit();
+          layer.close(index);
+        }
       });
     });
-  });
+  })
 </script>
 @endsection
