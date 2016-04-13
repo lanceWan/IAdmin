@@ -12,7 +12,8 @@ return [
 		'created_at' => '创建时间',
 		'updated_at' => '修改时间',
 		'remember_token' => 'token',
-		'list' => '用户列表'
+		'list' => '用户列表',
+		'confirm_email' => '邮箱验证',
 	],
 	'permission' => [
 		'id' => '序号',
@@ -47,5 +48,8 @@ return [
 		'roleList' => '<i class="fa fa-bars"></i> 角色列表',
 		'roleCreate' => '<i class="fa fa-user-plus"></i> 创建角色',
 		'roleEdit' => '<i class="fa fa-pencil"></i> 修改角色',
+		'userList' => '<i class="fa fa-bars"></i> 用户列表',
+		'userCreate' => '<i class="fa fa-user-plus"></i> 创建用户',
+		'userEdit' => '<i class="fa fa-pencil"></i> 修改用户',
 	]
 ];

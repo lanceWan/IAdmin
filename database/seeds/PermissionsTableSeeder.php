@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Permission;
+use Bican\Roles\Models\Permission;
 class PermissionsTableSeeder extends Seeder
 {
     /**
@@ -98,6 +98,42 @@ class PermissionsTableSeeder extends Seeder
             'description' => '修改角色'
         ]);
 
+        /**
+         * 通过角色
+         */
+        Permission::create([
+            'name' => 'roles audit',
+            'slug' => 'admin.roles.audit',
+            'description' => '通过角色'
+        ]);
+
+        /**
+         * 禁用角色
+         */
+        Permission::create([
+            'name' => 'roles trash',
+            'slug' => 'admin.roles.trash',
+            'description' => '禁用角色'
+        ]);
+
+        /**
+         * 恢复角色
+         */
+        Permission::create([
+            'name' => 'roles.undo',
+            'slug' => 'admin.roles.undo',
+            'description' => '恢复角色'
+        ]);
+
+        /**
+         * 查看角色权限
+         */
+        Permission::create([
+            'name' => 'roles.show',
+            'slug' => 'admin.roles.show',
+            'description' => '查看角色权限'
+        ]);
+
 
         /////////////
         //权限管理 //
@@ -161,6 +197,15 @@ class PermissionsTableSeeder extends Seeder
             'description' => '恢复权限'
         ]);
 
+        /**
+         * 通过权限
+         */
+        Permission::create([
+            'name' => 'permissions audit',
+            'slug' => 'admin.permissions.audit',
+            'description' => '通过权限'
+        ]);
+
         /////////////
         //用户管理 //
         ////////////
@@ -206,12 +251,48 @@ class PermissionsTableSeeder extends Seeder
             'description' => '修改用户'
         ]);
 
+        /**
+         * 通过用户
+         */
+        Permission::create([
+            'name' => 'users audit',
+            'slug' => 'admin.users.audit',
+            'description' => '通过用户'
+        ]);
+
+        /**
+         * 禁用用户
+         */
+        Permission::create([
+            'name' => 'users trash',
+            'slug' => 'admin.users.trash',
+            'description' => '禁用用户'
+        ]);
+
+        /**
+         * 恢复用户
+         */
+        Permission::create([
+            'name' => 'users undo',
+            'slug' => 'admin.users.undo',
+            'description' => '恢复用户'
+        ]);
+
+        /**
+         * 查看用户信息
+         */
+        Permission::create([
+            'name' => 'users show',
+            'slug' => 'admin.users.show',
+            'description' => '查看用户信息'
+        ]);
+
         //////////////////
         ///登录后台权限 //
         /////////////////
 
         Permission::create([
-            'name' => 'login.backend',
+            'name' => 'login backend',
             'slug' => 'login.backend',
             'description' => '登录后台权限'
         ]);

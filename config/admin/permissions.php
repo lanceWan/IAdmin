@@ -19,4 +19,14 @@ return[
 		'audit'		=> 'admin.roles.audit',
 		'show'		=> 'admin.roles.show',
 	],
+	'user' => [
+		'create' 	=> 'admin.users.create',
+		'edit' 		=> 'admin.users.edit',
+		'destory' 	=> 'admin.users.delete',
+		'trash' 	=> 'admin.users.trash',
+		'undo' 		=> 'admin.users.undo',
+		'list' 		=> 'admin.users.list',
+		'audit'		=> 'admin.users.audit',
+		'show'		=> 'admin.users.show',
+	],
 ];
