@@ -110,7 +110,7 @@ trait ActionAttributeTrait{
 	 */
 	public function getResetActionButton()
 	{
-		if (Auth::user()->can(config('admin.permissions.user.reset'))) {
+		if (Auth::user()->can(config('admin.permissions.'.$this->action.'.reset'))) {
 			return '<a href="'.url('admin/user/'.$this->id.'/reset').'" class="btn btn-xs btn-danger tooltips" data-container="body" data-original-title="' . trans('crud.reset') . '"  data-placement="top"><i class="fa fa-lock"></i></a>';
 		}
 		return '';
