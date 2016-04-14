@@ -28,5 +28,6 @@ return[
 		'list' 		=> 'admin.users.list',
 		'audit'		=> 'admin.users.audit',
 		'show'		=> 'admin.users.show',
+		'reset'		=> 'admin.users.reset',
 	],
 ];

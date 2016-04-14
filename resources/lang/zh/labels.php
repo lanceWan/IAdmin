@@ -3,6 +3,7 @@ return [
 	'action' => '操作',
 	'id' => 'ID',
 	'close' => '关闭',
+	'close' => '关闭',
 	'user' => [
 		'id' => '序号',
 		'name' => '用户名',
@@ -14,6 +15,14 @@ return [
 		'remember_token' => 'token',
 		'list' => '用户列表',
 		'confirm_email' => '邮箱验证',
+		'show' => '查看用户信息',
+		'reset' => '修改密码',
+		'permission' => '额外权限',
+		'confirm' => '已验证',
+		'active' => '<span class="label label-success"> 已验证 </span>',
+		'audit' => '<span class="label label-warning"> 未验证 </span>',
+		'notice' => '<strong>注意!</strong> 当某个角色的用户需要额外权限时添加.',
+		'info' => '暂无额外权限',
 	],
 	'permission' => [
 		'id' => '序号',
@@ -51,5 +60,7 @@ return [
 		'userList' => '<i class="fa fa-bars"></i> 用户列表',
 		'userCreate' => '<i class="fa fa-user-plus"></i> 创建用户',
 		'userEdit' => '<i class="fa fa-pencil"></i> 修改用户',
+		'userReset' => '<i class="fa fa-lock"></i> 修改密码',
+		'userShow' => '<i class="fa fa-user"></i> 用户信息',
 	]
 ];

@@ -47,11 +47,11 @@
                           <th>#</th>
                           <th width="15%"> {{ trans('labels.user.name') }} </th>
                           <th> {{ trans('labels.user.email') }} </th>
-                          <th width="15%"> {{ trans('labels.user.confirm_email') }} </th>
-                          <th> {{ trans('labels.user.status') }} </th>
-                          <th width="12%"> {{ trans('labels.user.created_at') }} </th>
-                          <th width="12%"> {{ trans('labels.user.updated_at') }} </th>
-                          <th> {{ trans('labels.action') }} </th>
+                          <th> {{ trans('labels.user.confirm_email') }} </th>
+                          <th width="10%"> {{ trans('labels.user.status') }} </th>
+                          <th width="15%"> {{ trans('labels.user.created_at') }} </th>
+                          <th width="15%"> {{ trans('labels.user.updated_at') }} </th>
+                          <th width="15%"> {{ trans('labels.action') }} </th>
                         </tr>
                         <tr role="row" class="filter">
                             <td></td>

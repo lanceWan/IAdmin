@@ -13,9 +13,7 @@ trait ActionAttributeTrait{
 	{
 		//开启查看按钮
 		if (config('admin.global.'.$this->action.'.show')) {
-			dd(Auth::user()->name);
 			if (Auth::user()->can(config('admin.permissions.'.$this->action.'.show'))) {
-
 				if ($type) {
 					return '<a href="'.url('admin/'.$this->action.'/'.$this->id).'" class="btn btn-xs btn-info tooltips" data-container="body" data-original-title="' . trans('labels.'.$this->action.'.show') . '"  data-placement="top"><i class="fa fa-search"></i></a>';
 				}
@@ -104,12 +102,27 @@ trait ActionAttributeTrait{
 		return '';
 	}
 
+	/**
+	 * 修改用户密码
+	 * @author 晚黎
+	 * @date   2016-04-14T09:30:32+0800
+	 * @return [type]                   [description]
+	 */
+	public function getResetActionButton()
+	{
+		if (Auth::user()->can(config('admin.permissions.user.reset'))) {
+			return '<a href="'.url('admin/user/'.$this->id.'/reset').'" class="btn btn-xs btn-danger tooltips" data-container="body" data-original-title="' . trans('crud.reset') . '"  data-placement="top"><i class="fa fa-lock"></i></a>';
+		}
+		return '';
+	}
+
 
 	
 
 	public function getActionButtonAttribute($showType = true)
 	{
 		return $this->getShowActionButton($showType).
+				$this->getResetActionButton().
 				$this->getEditActionButton().
 				$this->getUndoActionButton().
 				$this->getAuditActionButton().

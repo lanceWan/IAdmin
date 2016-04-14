@@ -99,6 +99,7 @@ class UserRepository
 				$v['actionButton'] = $v->getActionButtonAttribute();
 			}
 		}
+		
 		return [
 			'draw' => $draw,
 			'recordsTotal' => $count,
@@ -108,89 +109,105 @@ class UserRepository
 	}
 
 	/**
-	 * 添加角色
+	 * 添加用户
 	 * @author 晚黎
-	 * @date   2016-04-13T11:50:22+0800
+	 * @date   2016-04-14T11:32:04+0800
 	 * @param  [type]                   $request [description]
 	 * @return [type]                            [description]
 	 */
 	public function store($request)
 	{
-		$role = new Role;
-		if ($role->fill($request->all())->save()) {
-			//自动更新角色权限关系
-			if ($request->permission) {
-				$role->permission()->sync($request->permission);
+		$user = new User;
+
+		$userData = $request->all();
+		//密码进行加密
+		$userData['password'] = bcrypt($userData['password']);
+
+		if ($user->fill($userData)->save()) {
+			//自动更新用户权限关系
+			if ($userData['permission']) {
+				$user->permission()->sync($userData['permission']);
 			}
-			Flash::success(trans('alerts.roles.created_success'));
+			// 自动更新用户角色关系
+			if ($userData['role']) {
+				$user->role()->sync($userData['role']);
+			}
+			Flash::success(trans('alerts.users.created_success'));
 			return true;
 		}
-		Flash::error(trans('alerts.roles.created_error'));
+		Flash::error(trans('alerts.users.created_error'));
 		return false;
 	}
 	/**
-	 * 修改角色视图
+	 * 修改用户视图
 	 * @author 晚黎
-	 * @date   2016-04-13T11:50:34+0800
+	 * @date   2016-04-14T15:02:10+0800
 	 * @param  [type]                   $id [description]
 	 * @return [type]                       [description]
 	 */
 	public function edit($id)
 	{
-		$role = Role::with('permission')->find($id);
-		if ($role) {
-			$roleArray = $role->toArray();
-			if ($roleArray['permission']) {
-				$roleArray['permission'] = array_column($roleArray['permission'],'id');
+		$user = User::with(['permission','role'])->find($id);
+		if ($user) {
+			$userArray = $user->toArray();
+			if ($userArray['permission']) {
+				$userArray['permission'] = array_column($userArray['permission'],'id');
 			}
-			return $roleArray;
+			if ($userArray['role']) {
+				$userArray['role'] = array_column($userArray['role'],'id');
+			}
+			return $userArray;
 		}
 		abort(404);
 	}
 	/**
-	 * 修改角色
+	 * 修改用户资料
 	 * @author 晚黎
-	 * @date   2016-04-13T11:50:46+0800
+	 * @date   2016-04-14T15:17:25+0800
 	 * @param  [type]                   $request [description]
 	 * @param  [type]                   $id      [description]
 	 * @return [type]                            [description]
 	 */
 	public function update($request,$id)
 	{
-		$role = Role::find($id);
-		if ($role) {
-			if ($role->fill($request->all())->save()) {
-				//自动更新角色权限关系
+		$user = User::find($id);
+		if ($user) {
+			if ($user->fill($request->all())->save()) {
+				//自动更新用户权限关系
 				if ($request->permission) {
-					$role->permission()->sync($request->permission);
+					$user->permission()->sync($request->permission);
 				}
-				Flash::success(trans('alerts.roles.updated_success'));
+				//自动更新用户角色关系
+				if ($request->role) {
+					$user->role()->sync($request->role);
+				}
+				Flash::success(trans('alerts.users.updated_success'));
 				return true;
 			}
-			Flash::error(trans('alerts.roles.updated_error'));
+			Flash::error(trans('alerts.users.updated_error'));
 			return false;
 		}
 		abort(404);
 	}
 
 	/**
-	 * 修改角色状态
+	 * 修改用户状态
 	 * @author 晚黎
-	 * @date   2016-04-13T11:51:02+0800
+	 * @date   2016-04-14T11:50:45+0800
 	 * @param  [type]                   $id     [description]
 	 * @param  [type]                   $status [description]
 	 * @return [type]                           [description]
 	 */
 	public function mark($id,$status)
 	{
-		$role = role::find($id);
-		if ($role) {
-			$role->status = $status;
-			if ($role->save()) {
-				Flash::success(trans('alerts.roles.updated_success'));
+		$user = User::find($id);
+		if ($user) {
+			$user->status = $status;
+			if ($user->save()) {
+				Flash::success(trans('alerts.users.updated_success'));
 				return true;
 			}
-			Flash::error(trans('alerts.roles.updated_error'));
+			Flash::error(trans('alerts.users.updated_error'));
 			return false;
 		}
 		abort(404);
@@ -205,12 +222,12 @@ class UserRepository
 	 */
 	public function destroy($id)
 	{
-		$isDelete = Role::destroy($id);
+		$isDelete = User::destroy($id);
 		if ($isDelete) {
-			Flash::success(trans('alerts.roles.deleted_success'));
+			Flash::success(trans('alerts.users.deleted_success'));
 			return true;
 		}
-		Flash::error(trans('alerts.roles.deleted_error'));
+		Flash::error(trans('alerts.users.deleted_error'));
 		return false;
 	}
 
@@ -223,13 +240,31 @@ class UserRepository
 	 */
 	public function show($id)
 	{
-		$role = Role::select('id')->with('permission')->find($id);
-		$array = [];
-		if ($role->permission) {
-			foreach ($role->permission as $v) {
-				array_set($array, $v->slug, ['name' => $v->name,'desc' => $v->description]);
+		$user = User::with(['permission','role'])->find($id)->toArray();
+		
+		if ($user['permission']) {
+			$permissionArray = [];
+			foreach ($user['permission'] as $v) {
+				array_set($permissionArray, $v['slug'], ['name' => $v['name'],'desc' => $v['description']]);
 			}
+			$user['permission'] = $permissionArray;
 		}
-		return $array;
+		return $user;
+	}
+
+	public function resetPassword($request)
+	{
+		$request = $request->all();
+		$request['password'] = bcrypt($request['password']);
+		$user = User::find($request['id']);
+		if ($user) {
+			if ($user->fill($request)->save()) {
+				Flash::success(trans('alerts.users.reset_success'));
+				return true;
+			}
+			Flash::error(trans('alerts.users.reset_error'));
+			return false;
+		}
+		abort(404);
 	}
 }

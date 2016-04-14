@@ -39,8 +39,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web'
     require(__DIR__ . '/Routes/UserRoute.php');
     //权限
     require(__DIR__ . '/Routes/PermissionRoute.php');
-    // /*菜单*/
-    // require(__DIR__ . '/Routes/MenuRoute.php');
+    /*菜单*/
+    require(__DIR__ . '/Routes/MenuRoute.php');
     // 角色
     require(__DIR__ . '/Routes/RoleRoute.php');
 });

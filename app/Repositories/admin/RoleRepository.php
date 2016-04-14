@@ -242,4 +242,16 @@ class RoleRepository
 		}
 		return $array;
 	}
+
+	/**
+	 * 获取所有的角色
+	 * @author 晚黎
+	 * @date   2016-04-14T09:47:54+0800
+	 * @return [type]                   [description]
+	 */
+	public function findRoleWithObject()
+	{
+		$roles = Role::where('status',config('admin.global.status.active'))->get();
+		return $roles;
+	}
 }

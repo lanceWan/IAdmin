@@ -287,6 +287,15 @@ class PermissionsTableSeeder extends Seeder
             'description' => '查看用户信息'
         ]);
 
+        /**
+         * 修改用户密码
+         */
+        Permission::create([
+            'name' => 'users reset',
+            'slug' => 'admin.users.reset',
+            'description' => '修改用户密码'
+        ]);
+
         //////////////////
         ///登录后台权限 //
         /////////////////

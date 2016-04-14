@@ -13,8 +13,8 @@ return [
     |
     */
 
-    'previous' => '&laquo; Previous',
-    'next'     => 'Next &raquo;',
+    'previous' => '&laquo; 上一页',
+    'next'     => '下一页 &raquo;',
     'i18n'     => json_encode([
         "sProcessing"   =>    "玩命加载中...",
         "sLengthMenu"   =>    "显示 _MENU_ 项结果",

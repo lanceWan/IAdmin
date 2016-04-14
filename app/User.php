@@ -16,7 +16,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     function __construct()
     {
-        $this->action = config('admin.global.role.action');
+        $this->action = config('admin.global.user.action');
     }
 
     /**
@@ -25,7 +25,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','status','confirm_email'
     ];
 
     /**
@@ -36,4 +36,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function permission()
+    {
+        return $this->belongsToMany('App\Models\Permission','permission_user','user_id','permission_id')->withTimestamps();
+    }
+
+    public function role()
+    {
+        return $this->belongsToMany('App\Models\Role','role_user','user_id','role_id')->withTimestamps();
+    }
 }

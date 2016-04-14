@@ -28,3 +28,14 @@ if(!function_exists('isDoubleArray')){
 		return false;
 	}
 }
+/**
+ * 验证邮箱
+ */
+if(!function_exists('confirmEmail')){
+	function confirmEmail($confirm){
+		if ($confirm == config('admin.global.status.active')) {
+			return trans('labels.user.active');
+		}
+		return trans('labels.user.audit');
+	}
+}

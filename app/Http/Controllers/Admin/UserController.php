@@ -5,6 +5,11 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use UserRepository;
+use PermissionRepository;
+use RoleRepository;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\ResetPasswordRequest;
+use App\Http\Requests\UpdateUserRequest;
 class UserController extends Controller
 {
 	/**
@@ -30,7 +35,7 @@ class UserController extends Controller
         return response()->json($data);
     }
     /**
-     * 添加角色视图
+     * 添加用户视图
      * @author 晚黎
      * @date   2016-04-13T11:26:16+0800
      * @return [type]                   [description]
@@ -38,85 +43,111 @@ class UserController extends Controller
     public function create()
     {
         $permissions = PermissionRepository::findPermissionWithArray();
-        return view('admin.role.create')->with(compact('permissions'));
+        $roles = RoleRepository::findRoleWithObject();
+        return view('admin.user.create')->with(compact(['permissions','roles']));
     }
 
     /**
-     * 添加角色
+     * 添加用户
      * @author 晚黎
-     * @date   2016-04-13T11:26:35+0800
-     * @param  RoleRequest        $request [description]
+     * @date   2016-04-14T11:31:29+0800
+     * @param  CreateUserRequest        $request [description]
      * @return [type]                            [description]
      */
-    public function store(RoleRequest $request)
+    public function store(CreateUserRequest $request)
     {
-        RoleRepository::store($request);
-        return redirect('admin/role');
+        UserRepository::store($request);
+        return redirect('admin/user');
     }
 
     /**
-     * 修改角色视图
+     * 修改用户视图
      * @author 晚黎
-     * @date   2016-04-13T11:26:42+0800
+     * @date   2016-04-14T15:01:16+0800
      * @param  [type]                   $id [description]
      * @return [type]                       [description]
      */
     public function edit($id)
     {
-        $role = RoleRepository::edit($id);
+        $user = UserRepository::edit($id);
+        $roles = RoleRepository::findRoleWithObject();
         $permissions = PermissionRepository::findPermissionWithArray();
-        return view('admin.role.edit')->with(compact(['role','permissions']));
+        return view('admin.user.edit')->with(compact(['user','permissions','roles']));
     }
     /**
-     * 修改角色
+     * 修改用户资料
      * @author 晚黎
-     * @date   2016-04-13T11:26:57+0800
-     * @param  RoleRequest        $request [description]
+     * @date   2016-04-14T15:16:54+0800
+     * @param  UpdateUserRequest        $request [description]
      * @param  [type]                   $id      [description]
      * @return [type]                            [description]
      */
-    public function update(RoleRequest $request,$id)
+    public function update(UpdateUserRequest $request,$id)
     {
-        RoleRepository::update($request,$id);
-        return redirect('admin/role');
+        UserRepository::update($request,$id);
+        return redirect('admin/user');
     }
 
     /**
-     * 修改角色状态
+     * 修改用户状态
      * @author 晚黎
-     * @date   2016-04-13T11:27:23+0800
+     * @date   2016-04-14T11:50:04+0800
      * @param  [type]                   $id     [description]
      * @param  [type]                   $status [description]
      * @return [type]                           [description]
      */
     public function mark($id,$status)
     {
-        RoleRepository::mark($id,$status);
-        return redirect('admin/role');
+        UserRepository::mark($id,$status);
+        return redirect('admin/user');
     }
 
     /**
-     * 删除角色
+     * 删除用户
      * @author 晚黎
-     * @date   2016-04-13T11:27:34+0800
+     * @date   2016-04-14T11:52:40+0800
      * @param  [type]                   $id [description]
      * @return [type]                       [description]
      */
     public function destroy($id)
     {
-        RoleRepository::destroy($id);
-        return redirect('admin/role');
+        UserRepository::destroy($id);
+        return redirect('admin/user');
     }
     /**
-     * 查看角色权限
+     * 查看用户信息
      * @author 晚黎
-     * @date   2016-04-13T17:08:46+0800
+     * @date   2016-04-14T13:49:32+0800
      * @param  [type]                   $id [description]
      * @return [type]                       [description]
      */
     public function show($id)
     {
-        $permissions = RoleRepository::show($id);
-        return view('admin.role.show')->with(compact('permissions'));
+        $user = UserRepository::show($id);
+        // dd($user);
+        return view('admin.user.show')->with(compact('user'));
+    }
+    /**
+     * 修改用户密码视图
+     * @author 晚黎
+     * @date   2016-04-14T11:57:42+0800
+     * @param  [type]                   $id [description]
+     * @return [type]                       [description]
+     */
+    public function changePassword($id)
+    {
+        return view('admin.user.reset')->with(compact('id'));
+    }
+
+    /**
+     * 修改用户密码
+     * @author 晚黎
+     * @date   2016-04-14T11:58:13+0800
+     * @return [type]                   [description]
+     */
+    public function resetPassword(ResetPasswordRequest $request)
+    {
+        UserRepository::resetPassword($request);
+        return redirect('admin/user');
     }
 }

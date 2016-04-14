@@ -8,4 +8,6 @@ return [
 	'undo' 		=> '恢复',
 	'audit' 	=> '通过',
 	'destory' 	=> '彻底删除',
+	'reset' 	=> '修改密码',
+	'back' 		=> '返回',
 ];

@@ -42,20 +42,20 @@
             <li class="heading">
                 <h3 class="uppercase">System</h3>
             </li>
-            <li class="nav-item  ">
+            <li class="nav-item  {{active_class(if_uri_pattern(['admin/user*']),'active open')}}">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-cog"></i>
                     <span class="title">系统管理</span>
-                    <span class="arrow"></span>
+                    <span class="arrow {{active_class(if_uri_pattern(['admin/user*']),'open')}}""></span>
                 </a>
                 <ul class="sub-menu">
-                    <li class="nav-item  ">
-                        <a href="{{url('admin/user')}}" class="nav-link ">
+                    <li class="nav-item">
+                        <a href="{{url('admin/user')}}" class="nav-link">
                             <i class="fa fa-users"></i>
                             <span class="title">用户管理</span>
                         </a>
                     </li>
-                    <li class="nav-item  ">
+                    <li class="nav-item">
                         <a href="{{url('admin/role')}}" class="nav-link ">
                             <i class="fa fa-male"></i>
                             <span class="title">角色管理</span>

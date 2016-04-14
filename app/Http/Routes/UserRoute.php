@@ -11,6 +11,8 @@ $router->group(['prefix' => 'user'], function($router){
 		   				config('admin.global.status.audit').'|'.
 		   				config('admin.global.status.active')
 		  	]);
+	$router->get('/{id}/reset','UserController@changePassword')->where(['id' => '[0-9]+']);
+	$router->post('reset','UserController@resetPassword');
 });
 
 $router->resource('user', 'UserController');
