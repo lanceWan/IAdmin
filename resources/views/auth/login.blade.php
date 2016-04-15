@@ -24,7 +24,7 @@
         <div class="input-group">
             <input id="newpassword" class="form-control" type="text" name="captcha" placeholder="captcha">
             <span class="input-group-btn">
-                <a href="#"><img src="{{captcha_src()}}" onclick="this.src='{{captcha_src()}}'"></a>
+                <img style="cursor: pointer;" src="{{captcha_src()}}" onclick="this.src='{{captcha_src()}}'">
             </span>
         </div>
     </div>
