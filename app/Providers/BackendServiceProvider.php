@@ -33,5 +33,8 @@ class BackendServiceProvider extends ServiceProvider
         $this->app->singleton('RoleRepository', function($app){
             return new \App\Repositories\admin\RoleRepository();
         });
+        $this->app->singleton('MenuRepository', function($app){
+            return new \App\Repositories\admin\MenuRepository();
+        });
     }
 }

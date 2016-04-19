@@ -3,16 +3,31 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\Menu;
-use DB;
+use MenuRepository;
 class MenuController extends Controller
 {
+	/**
+	 * 餐单首页
+	 * @author 晚黎
+	 * @date   2016-04-19T10:50:12+0800
+	 * @return [type]                   [description]
+	 */
     public function index()
     {
-    	$menus = DB::select('select node.name as name,  (count(parent.name) - 1) as deep,parent.category_id as pid from nested_category as node,nested_category as parent where node.lft between parent.lft and parent.rgt group by node.name order by node.lft');
+    	$menus = MenuRepository::ajaxIndex();
+    	// dd($menus);
+    	return view('admin.menu.list')->with(compact('menus'));
+    }
 
-    	dd($menus);
-    	return view('admin.menu.list');
-
+    /**
+     * ajax获取菜单数据
+     * @author 晚黎
+     * @date   2016-04-19T10:50:29+0800
+     * @return [type]                   [description]
+     */
+    public function ajaxIndex()
+    {
+    	$menus = MenuRepository::ajaxIndex();
+    	return response()->json($menus);
     }
 }

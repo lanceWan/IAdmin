@@ -3,7 +3,7 @@
  * 菜单路由
  */
 $router->group(['prefix' => 'menu'], function($router){
-	$router->get('ajaxindex', 'MenuController@ajaxIndex');
+	$router->get('ajaxIndex', 'MenuController@ajaxIndex');
 	$router->get('/{id}/mark/{status}', 'MenuController@mark')
 		   ->where([
 		   	'id' => '[0-9]+',

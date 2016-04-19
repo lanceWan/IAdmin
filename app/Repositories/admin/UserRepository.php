@@ -241,7 +241,7 @@ class UserRepository
 	public function show($id)
 	{
 		$user = User::with(['permission','role'])->find($id)->toArray();
-		
+
 		if ($user['permission']) {
 			$permissionArray = [];
 			foreach ($user['permission'] as $v) {

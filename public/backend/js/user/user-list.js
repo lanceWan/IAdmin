@@ -6,7 +6,7 @@ var TableDatatablesAjax = function() {
       "serverSide": true,
       "searching" : false,
       "ajax": {
-        'url' : '/admin/user/ajaxindex',
+        'url' : '/admin/user/ajaxIndex',
         "data": function ( d ) {
           d.name = $('.filter input[name="name"]').val();
           d.email = $('.filter input[name="email"]').val();

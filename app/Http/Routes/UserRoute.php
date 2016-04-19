@@ -3,7 +3,7 @@
  * 用户路由
  */
 $router->group(['prefix' => 'user'], function($router){
-	$router->get('ajaxindex', 'UserController@ajaxIndex');
+	$router->get('ajaxIndex', 'UserController@ajaxIndex');
 	$router->get('/{id}/mark/{status}', 'UserController@mark')
 		   ->where([
 		   	'id' => '[0-9]+',

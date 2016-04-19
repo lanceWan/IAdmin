@@ -124,7 +124,6 @@ class UserController extends Controller
     public function show($id)
     {
         $user = UserRepository::show($id);
-        // dd($user);
         return view('admin.user.show')->with(compact('user'));
     }
     /**

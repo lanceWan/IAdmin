@@ -3,7 +3,7 @@
  * 权限路由
  */
 $router->group(['prefix' => 'permission'], function($router){
-	$router->get('ajaxindex', 'PermissionController@ajaxIndex');
+	$router->get('ajaxIndex', 'PermissionController@ajaxIndex');
 	$router->get('/{id}/mark/{status}', 'PermissionController@mark')
 		   ->where([
 		   	'id' => '[0-9]+',

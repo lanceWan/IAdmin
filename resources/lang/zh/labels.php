@@ -62,5 +62,6 @@ return [
 		'userEdit' => '<i class="fa fa-pencil"></i> 修改用户',
 		'userReset' => '<i class="fa fa-lock"></i> 修改密码',
 		'userShow' => '<i class="fa fa-user"></i> 用户信息',
+		'menuList' => '<i class="fa fa-cogs"></i> 菜单管理',
 	]
 ];

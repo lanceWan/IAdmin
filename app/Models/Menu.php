@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
 {
-    protected $table = 'nested_category';
+    protected $table = 'menus';
 }

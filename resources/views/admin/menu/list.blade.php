@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('css')
-<link rel="stylesheet" type="text/css" href="{{asset('backend/plugins/jstree/dist/themes/default/style.min.css')}}">
+<link href="{{asset('backend/plugins/jquery-nestable/jquery.nestable.css')}}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
 <div class="page-bar">
@@ -10,81 +10,69 @@
           <i class="fa fa-angle-right"></i>
       </li>
       <li>
-          <span>{!! trans('labels.breadcrumb.userList') !!}</span>
+          <span>{!! trans('labels.breadcrumb.menuList') !!}</span>
       </li>
   </ul>
 </div>
-<!-- END PAGE BAR -->
-<div id="tree_3" class="tree-demo"> </div>
+<div class="row margin-top-40">
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <div class="portlet light portlet-fit portlet-datatable bordered">
+              <div class="portlet-title">
+                <div class="caption">
+                  <i class="icon-settings font-dark"></i>
+                  <span class="caption-subject font-dark sbold uppercase">{!! trans('labels.breadcrumb.menuList') !!}</span>
+                </div>
+                <div class="actions">
+                    <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""> </a>
+                </div>
+              </div>
+                <div class="portlet-body">
+                    <div class="dd" id="nestable_list">
+                        <ol class="dd-list">
+                            @if($menus)
+                            @foreach($menus as $v)
+                            @if($v['child'])
+                            <li class="dd-item" data-id="{{$v['id']}}">
+                                <div class="dd-handle"> {{$v['name']}} </div>
+                                <ol class="dd-list">
+                                    @foreach($v['child'] as $val)
+                                    <li class="dd-item" data-id="{{$val['id']}}">
+                                        <div class="dd-handle"> {{$val['name']}} </div>
+                                    </li>
+                                    @endforeach
+                                </ol>
+                            </li>
+                            @else
+                                <li class="dd-item" data-id="{{$v['id']}}">
+                                    <div class="dd-handle"> {{$v['name']}} </div>
+                                </li>
+                            @endif
+                            @endforeach
+                            @endif
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            132
+        </div>
+        <!-- End: life time stats -->
+    </div>
+</div>
+
 @endsection
 @section('js')
-<script type="text/javascript" src="{{asset('backend/plugins/jstree/dist/jstree.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('backend/plugins/jquery-nestable/jquery.nestable.js')}}"></script>
 <script>
-  $("#tree_3").jstree({
-    "core" : {
-        "themes" : {
-            "responsive": false
-        }, 
-        // so that create works
-        "check_callback" : true,
-        'data': [{
-                "text": "Parent Node",
-                "children": [{
-                    'id' : 'node_2',
-                    "text": "Initially selected",
-                    "state": {
-                        "selected": true
-                    }
-                }, {
-                    "text": "Custom Icon",
-                    "icon": "fa fa-warning icon-state-danger"
-                }, {
-                    "text": "Initially open",
-                    "icon" : "fa fa-folder icon-state-success",
-                    "state": {
-                        "opened": true
-                    },
-                    "children": [
-                        {"text": "Another node", "icon" : "fa fa-file icon-state-warning"}
-                    ]
-                }, {
-                    "text": "Another Custom Icon",
-                    "icon": "fa fa-warning icon-state-warning"
-                }, {
-                    "id" : "jsssss",
-                    "text": "Disabled Node",
-                    "icon": "fa fa-check icon-state-success",
-                    "state": {
-                        "disabled": true
-                    }
-                }, {
-                    "text": "Sub Nodes",
-                    "icon": "fa fa-folder icon-state-danger",
-                    "children": [
-                        {"text": "Item 1", "icon" : "fa fa-file icon-state-warning"},
-                        {"text": "Item 2", "icon" : "fa fa-file icon-state-success"},
-                        {"text": "Item 3", "icon" : "fa fa-file icon-state-default"},
-                        {"text": "Item 4", "icon" : "fa fa-file icon-state-danger"},
-                        {"text": "Item 5", "icon" : "fa fa-file icon-state-info"}
-                    ]
-                }]
-            },
-            "Another Node"
-        ]
-    },
-    "types" : {
-        "default" : {
-            "icon" : "fa fa-folder icon-state-warning icon-lg"
-        },
-        "file" : {
-            "icon" : "fa fa-file icon-state-warning icon-lg"
-        }
-    },
-    "state" : { "key" : "demo2" },
-    "plugins" : [ "contextmenu", "dnd", "state", "types" ]
-}).on('move_node.jstree', function(e,data){
-  console.info(data);
+$('#nestable_list').nestable({
+    "maxDepth":2
+})
+.on('dragEnd', function(event, item, source, destination, position) {
+    var currentItem = $(item).attr('data-id');
+    var itemParent = $(item).parent().parent().attr('data-id');
+    console.log(currentItem,itemParent);
 });
-
 </script>
 @endsection

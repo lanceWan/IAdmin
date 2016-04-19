@@ -3,7 +3,7 @@
  * 角色路由
  */
 $router->group(['prefix' => 'role'], function($router){
-	$router->get('ajaxindex', 'RoleController@ajaxIndex');
+	$router->get('ajaxIndex', 'RoleController@ajaxIndex');
 	$router->get('/{id}/mark/{status}', 'RoleController@mark')
 		   ->where([
 		   	'id' => '[0-9]+',
