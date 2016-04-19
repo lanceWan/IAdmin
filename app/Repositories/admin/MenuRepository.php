@@ -13,9 +13,9 @@ class MenuRepository
 	public function ajaxIndex()
 	{
 		//判断是否缓存menu数据
-		if (Cache::has('menuList')) {
-			return Cache::get('menuList');
-		}
+		// if (Cache::has('menuList')) {
+		// 	return Cache::get('menuList');
+		// }
 
 		$menus = Menu::where([
 				'language'=>config('app.locale'),

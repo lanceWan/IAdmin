@@ -7,7 +7,7 @@ use MenuRepository;
 class MenuController extends Controller
 {
 	/**
-	 * 餐单首页
+	 * 菜单首页
 	 * @author 晚黎
 	 * @date   2016-04-19T10:50:12+0800
 	 * @return [type]                   [description]
@@ -15,7 +15,6 @@ class MenuController extends Controller
     public function index()
     {
     	$menus = MenuRepository::ajaxIndex();
-    	// dd($menus);
     	return view('admin.menu.list')->with(compact('menus'));
     }
 
