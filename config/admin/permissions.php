@@ -30,4 +30,9 @@ return[
 		'show'		=> 'admin.users.show',
 		'reset'		=> 'admin.users.reset',
 	],
+	'menu' => [
+		'create' 	=> 'admin.menus.create',
+		'edit' 		=> 'admin.menus.edit',
+		'destory' 	=> 'admin.menus.delete',
+	],
 ];

@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use MenuRepository;
 class BackendServiceProvider extends ServiceProvider
 {
     /**
@@ -13,7 +13,9 @@ class BackendServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //共享菜单数据
+        $menus = MenuRepository::index();
+        view()->share('menus', $menus);
     }
 
     /**

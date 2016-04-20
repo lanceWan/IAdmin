@@ -3,7 +3,7 @@ return [
 	'action' => '操作',
 	'id' => 'ID',
 	'close' => '关闭',
-	'close' => '关闭',
+	'menuLevel' => '顶级菜单',
 	'user' => [
 		'id' => '序号',
 		'name' => '用户名',
@@ -52,7 +52,7 @@ return [
 	'menu' => [
 		'id' => 'ID',
 		'name' => '名称',
-		'pid' => '父ID',
+		'pid' => '一级菜单',
 		'language' => '语言',
 		'icon' => '图标',
 		'slug' => '权限',
