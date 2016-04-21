@@ -11,12 +11,44 @@ class PermissionsTableSeeder extends Seeder
      */
     public function run()
     {
-        /*显示菜单管理*/
+        //////////
+        //系统管理//
+        //////////
         Permission::create([
-            'name' => 'Show Menus Manage',
-            'slug' => 'admin.menus.manage',
-            'description' => '显示菜单管理'
+            'name' => 'systems manage',
+            'slug' => 'admin.systems.manage',
+            'description' => '系统管理'
         ]);
+        //////////////////
+        ///登录后台权限 //
+        /////////////////
+
+        Permission::create([
+            'name' => 'login backend',
+            'slug' => 'admin.systems.login',
+            'description' => '登录后台权限'
+        ]);
+
+        Permission::create([
+            'name' => 'backend index',
+            'slug' => 'admin.systems.index',
+            'description' => '后台首页'
+        ]);
+
+        Permission::create([
+            'name' => 'Show Log All',
+            'slug' => 'admin.logs.all',
+            'description' => '显示日志总览'
+        ]);
+
+        Permission::create([
+            'name' => 'Show Log List',
+            'slug' => 'admin.logs.list',
+            'description' => '显示日志列表'
+        ]);
+
+
+
         /**
          * 显示菜单列表
          */
@@ -56,11 +88,6 @@ class PermissionsTableSeeder extends Seeder
         /////////////
         //角色管理 //
         ////////////
-        Permission::create([
-        	'name' => 'Roles manage',
-        	'slug' => 'admin.roles.manage',
-        	'description' => '显示角色管理'
-        ]);
 
         /**
          * 显示角色列表
@@ -138,11 +165,6 @@ class PermissionsTableSeeder extends Seeder
         /////////////
         //权限管理 //
         ////////////
-        Permission::create([
-        	'name' => 'permissions manage',
-        	'slug' => 'admin.permissions.manage',
-        	'description' => '显示权限管理'
-        ]);
 
         /**
          * 显示权限列表
@@ -209,11 +231,6 @@ class PermissionsTableSeeder extends Seeder
         /////////////
         //用户管理 //
         ////////////
-        Permission::create([
-        	'name' => 'users manage',
-        	'slug' => 'admin.users.manage',
-        	'description' => '显示用户管理'
-        ]);
 
         /**
          * 显示用户列表
@@ -294,35 +311,6 @@ class PermissionsTableSeeder extends Seeder
             'name' => 'users reset',
             'slug' => 'admin.users.reset',
             'description' => '修改用户密码'
-        ]);
-
-        //////////////////
-        ///登录后台权限 //
-        /////////////////
-
-        Permission::create([
-            'name' => 'login backend',
-            'slug' => 'login.backend',
-            'description' => '登录后台权限'
-        ]);
-
-        /*日志*/
-        Permission::create([
-            'name' => 'Show Log Manage',
-            'slug' => 'admin.logs.manage',
-            'description' => '显示日志管理'
-        ]);
-
-        Permission::create([
-            'name' => 'Show Log All',
-            'slug' => 'admin.logs.all',
-            'description' => '显示日志总览'
-        ]);
-
-        Permission::create([
-            'name' => 'Show Log List',
-            'slug' => 'admin.logs.list',
-            'description' => '显示日志列表'
         ]);
     }
 }

@@ -35,7 +35,7 @@ class RoleTableSeeder extends Seeder
         /**
          * 普通用户赋予一般权限
          */
-        $loginBackendPer = Permission::where('slug', '=', 'login.backend')->first();
+        $loginBackendPer = Permission::where('slug', '=', 'admin.systems.login')->first();
         
         $userRole->attachPermission($loginBackendPer);
     }

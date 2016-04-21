@@ -33,6 +33,7 @@
             </li>
             @if($menus)
             @foreach($menus as $v)
+            @permission($v['slug'])
             @if($v['child'])
             <li class="nav-item  {{active_class(if_uri_pattern(explode(',',$v['url'])),'active open')}}">
                 <a href="javascript:;" class="nav-link nav-toggle">
@@ -42,12 +43,14 @@
                 </a>
                 <ul class="sub-menu">
                     @foreach($v['child'] as $val)
+                    @permission($val['slug'])
                     <li class="nav-item {{active_class(if_uri_pattern([$val['url'].'*']),'active')}}">
                         <a href="{{url($val['url'])}}" class="nav-link">
                             <i class="{{$val['icon']}}"></i>
                             <span class="title">{{$val['name']}}</span>
                         </a>
                     </li>
+                    @endpermission
                     @endforeach
                 </ul>
             </li>
@@ -59,6 +62,7 @@
                 </a>
             </li>
             @endif
+            @endpermission
             @endforeach
             @endif
         </ul>

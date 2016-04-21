@@ -80,5 +80,8 @@ return [
 		'userReset' => '<i class="fa fa-lock"></i> 修改密码',
 		'userShow' => '<i class="fa fa-user"></i> 用户信息',
 		'menuList' => '<i class="fa fa-cogs"></i> 菜单管理',
+		'logList' => '<i class="fa fa-cogs"></i> 系统日志',
+		'logs' => '<i class="fa fa-navicon"></i> 日志列表',
+		'logDetail' => '<i class="fa fa-television"></i> 日志详情',
 	]
 ];
