@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Bican\Roles\Models\Role;
-use Bican\Roles\Models\Permission;
+use App\Models\Role;
+use App\Models\Permission;
 class RoleTableSeeder extends Seeder
 {
     /**

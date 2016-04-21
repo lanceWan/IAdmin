@@ -14,8 +14,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     private $action;
 
-    function __construct()
+    public function __construct(array $attributes = [])
     {
+        parent::__construct($attributes);
         $this->action = config('admin.global.user.action');
     }
 

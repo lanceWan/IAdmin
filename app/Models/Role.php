@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\ActionAttributeTrait;
-class Role extends Model
+use Bican\Roles\Models\Role as BicanRole;
+class Role extends BicanRole
 {
 	use ActionAttributeTrait;
     protected $table = 'roles';
@@ -13,8 +14,9 @@ class Role extends Model
 
     private $action;
 
-    function __construct()
+    public function __construct(array $attributes = [])
     {
+        parent::__construct($attributes);
     	$this->action = config('admin.global.role.action');
     }
 

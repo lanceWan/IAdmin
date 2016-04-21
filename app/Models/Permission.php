@@ -3,7 +3,8 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\ActionAttributeTrait;
-class Permission extends Model
+use Bican\Roles\Models\Permission as BicanPermission;
+class Permission extends BicanPermission
 {
 	use ActionAttributeTrait;
 	
@@ -13,8 +14,9 @@ class Permission extends Model
 
     private $action;
 
-    function __construct()
+    public function __construct(array $attributes = [])
     {
+        parent::__construct($attributes);
     	$this->action = config('admin.global.permission.action');
     }
 
