@@ -165,6 +165,7 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Mews\Captcha\CaptchaServiceProvider::class,
+        Hsky\Actionlog\ActionlogServiceProvider::class,
 
     ],
 
@@ -216,6 +217,7 @@ return [
         'Flash' => Laracasts\Flash\Flash::class,
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Actionlog' => Hsky\Actionlog\Facades\ActionLogFacade::class,
 
         //仓库
         'UserRepository' => App\Facades\UserFacade::class,
