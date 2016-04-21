@@ -46,13 +46,13 @@
                         <tr role="row" class="heading">
                           <th>#</th>
                           <th width="15%"> {{ trans('labels.role.name') }} </th>
-                          <th width="15%"> {{ trans('labels.role.slug') }} </th>
+                          <th> {{ trans('labels.role.slug') }} </th>
                           <th> {{ trans('labels.role.description') }} </th>
                           <th> {{ trans('labels.role.level') }} </th>
                           <th> {{ trans('labels.role.status') }} </th>
-                          <th width="12%"> {{ trans('labels.role.created_at') }} </th>
-                          <th width="12%"> {{ trans('labels.role.updated_at') }} </th>
-                          <th> {{ trans('labels.action') }} </th>
+                          <th width="15%"> {{ trans('labels.role.created_at') }} </th>
+                          <th width="15%"> {{ trans('labels.role.updated_at') }} </th>
+                          <th width="15%"> {{ trans('labels.action') }} </th>
                         </tr>
                         <tr role="row" class="filter">
                             <td></td>
