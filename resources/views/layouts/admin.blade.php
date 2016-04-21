@@ -54,7 +54,7 @@
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <img alt="" class="img-circle" src="{{asset('backend/img/avatar3_small.jpg')}}" />
-                                <span class="username username-hide-on-mobile"> Nick </span>
+                                <span class="username username-hide-on-mobile"> {{Auth::user()->name}}</span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">
@@ -80,12 +80,8 @@
                                 </li>
                                 <li class="divider"> </li>
                                 <li>
-                                    <a href="page_user_lock_1.html">
-                                        <i class="icon-lock"></i> Lock Screen </a>
-                                </li>
-                                <li>
-                                    <a href="page_user_login_1.html">
-                                        <i class="icon-key"></i> Log Out </a>
+                                    <a href="{{url('logout')}}">
+                                        <i class="icon-key"></i> {{trans('labels.logout')}} </a>
                                 </li>
                             </ul>
                         </li>
@@ -114,6 +110,14 @@
             <!-- END CONTENT -->
         </div>
         <!-- END CONTAINER -->
+        <div class="page-footer">
+            <div class="page-footer-inner"> 
+                2014 © Metronic by keenthemes.
+            </div>
+            <div class="scroll-to-top">
+                <i class="icon-arrow-up"></i>
+            </div>
+        </div>
         <!--[if lt IE 9]>
         <script src="../assets/global/plugins/respond.min.js"></script>
         <script src="../assets/global/plugins/excanvas.min.js"></script> 

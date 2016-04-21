@@ -1,13 +1,11 @@
-<div class="panel panel-default">
-    <div class="panel-heading"><i class="fa fa-fw fa-flag"></i> Levels</div>
+<div class="panel panel-success">
+    <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-fw fa-flag"></i> Levels</h3></div>
     <ul class="list-group">
         @foreach($log->menu() as $level => $item)
             @if ($item['count'] === 0)
                 <a href="#" class="list-group-item disabled">
-                    <span class="badge">
-                        {{ $item['count'] }}
-                    </span>
                     {!! $item['icon'] !!} {{ $item['name'] }}
+                    <span class="badge badge-default"> {{ $item['count'] }} </span>
                 </a>
             @else
                 <a href="{{ $item['url'] }}" class="list-group-item {{ $level }}">

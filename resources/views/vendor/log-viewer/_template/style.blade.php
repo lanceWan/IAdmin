@@ -9,7 +9,7 @@
         /* Margin bottom by footer height */
         margin-bottom: 50px;
         font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, sans-serif;
-        font-weight: 600;
+        /*font-weight: 600;*/
     }
 
     h1, h2, h3 {

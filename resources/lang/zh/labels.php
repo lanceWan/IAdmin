@@ -4,6 +4,7 @@ return [
 	'id' => 'ID',
 	'close' => '关闭',
 	'menuLevel' => '顶级菜单',
+	'logout' => '退出',
 	'user' => [
 		'id' => '序号',
 		'name' => '用户名',

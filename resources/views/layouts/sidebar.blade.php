@@ -1,4 +1,3 @@
-BEGIN SIDEBAR -->
 <div class="page-sidebar-wrapper">
     <div class="page-sidebar navbar-collapse collapse">
         <!-- BEGIN SIDEBAR MENU -->
@@ -57,7 +56,6 @@ BEGIN SIDEBAR -->
                 <a href="{{url($v['url'])}}" class="nav-link nav-toggle">
                     <i class="{{$v['icon']}}"></i>
                     <span class="title">{{$v['name']}}</span>
-                    <span class="selected"></span>
                 </a>
             </li>
             @endif

@@ -1,5 +1,7 @@
-@extends('log-viewer::_template.master')
-
+@extends('layouts.admin')
+@section('css')
+    @include('log-viewer::_template.style')
+@endsection
 @section('content')
     <h1 class="page-header">Log [{{ $log->date }}]</h1>
 
@@ -21,7 +23,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="table-responsive">
+                <div class="table-responsive margin-bottom-5">
                     <table class="table table-condensed">
                         <thead>
                             <tr>
@@ -64,56 +66,65 @@
                     </div>
                 @endif
 
-                <div class="table-responsive">
-                    <table id="entries" class="table table-condensed">
-                        <thead>
-                            <tr>
-                                <th>ENV</th>
-                                <th style="width: 120px;">Level</th>
-                                <th style="width: 65px;">Time</th>
-                                <th>Header</th>
-                                <th class="text-right">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($entries as $key => $entry)
-                                <tr>
-                                    <td>
-                                        <span class="label label-env">{{ $entry->env }}</span>
-                                    </td>
-                                    <td>
-                                        <span class="level level-{{ $entry->level }}">
-                                            {!! $entry->level() !!}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span class="label label-default">
-                                            {{ $entry->datetime->format('H:i:s') }}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <p>{{ $entry->header }}</p>
-                                    </td>
-                                    <td class="text-right">
-                                        @if ($entry->hasStack())
-                                            <a class="btn btn-xs btn-default" role="button" data-toggle="collapse" href="#log-stack-{{ $key }}" aria-expanded="false" aria-controls="log-stack-{{ $key }}">
-                                                <i class="fa fa-toggle-on"></i> Stack
-                                            </a>
-                                        @endif
-                                    </td>
-                                </tr>
-                                @if ($entry->hasStack())
+                <div class="portlet box blue">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-cogs"></i>Log Detail </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-responsive">
+                            <table id="entries" class="table table-bordered">
+                                <thead>
                                     <tr>
-                                        <td colspan="5" class="stack">
-                                            <div class="stack-content collapse" id="log-stack-{{ $key }}">
-                                                {!! preg_replace("/\n/", '<br>', $entry->stack) !!}
-                                            </div>
-                                        </td>
+                                        <th>ENV</th>
+                                        <th style="width: 120px;">Level</th>
+                                        <th style="width: 65px;">Time</th>
+                                        <th>Header</th>
+                                        <th class="text-right">Actions</th>
                                     </tr>
-                                @endif
-                            @endforeach
-                        </tbody>
-                    </table>
+                                </thead>
+                                <tbody>
+                                    @foreach($entries as $key => $entry)
+                                        <tr>
+                                            <td>
+                                                <span class="label label-env">{{ $entry->env }}</span>
+                                            </td>
+                                            <td>
+                                                <span class="level level-{{ $entry->level }}">
+                                                    {!! $entry->level() !!}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="label label-default">
+                                                    {{ $entry->datetime->format('H:i:s') }}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <p>{{ $entry->header }}</p>
+                                            </td>
+                                            <td class="text-right">
+                                                @if ($entry->hasStack())
+                                                    <a class="btn btn-xs btn-default" role="button" data-toggle="collapse" href="#log-stack-{{ $key }}" aria-expanded="false" aria-controls="log-stack-{{ $key }}">
+                                                        <i class="fa fa-toggle-on"></i> Stack
+                                                    </a>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        @if ($entry->hasStack())
+                                            <tr>
+                                                <td colspan="5" class="stack">
+                                                    <div class="stack-content collapse" id="log-stack-{{ $key }}">
+                                                        {!! preg_replace("/\n/", '<br>', $entry->stack) !!}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
                 </div>
 
                 @if ($entries->hasPages())
