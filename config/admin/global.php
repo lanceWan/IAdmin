@@ -51,5 +51,11 @@ return[
 		'show' => true,
 		// trait 中的 action 参数
 		'action' => 'user',
+	],
+	'chat' => [
+		'appKey' => 'mgb7ka1nbtqzg',
+		'serverUrl' => 'https://api.cn.ronghub.com',
+		'appSecret' => 'i4XXcGRELqb7',
+		'format' => 'json',
 	]
 ];

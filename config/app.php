@@ -222,6 +222,7 @@ return [
         'PermissionRepository' => App\Facades\PermissionFacade::class,
         'RoleRepository' => App\Facades\RoleFacade::class,
         'MenuRepository' => App\Facades\MenuFacade::class,
+        'ChatRepository' => App\Facades\ChatFacade::class,
 
     ],
 

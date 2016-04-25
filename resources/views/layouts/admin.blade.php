@@ -26,6 +26,7 @@
         <!-- BEGIN THEME LAYOUT STYLES -->
         <link href="{{asset('backend/css/layout.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('backend/css/darkblue.min.css')}}" rel="stylesheet" type="text/css" id="style_color" />
+        <link rel="stylesheet" type="text/css" href="{{asset('backend/plugins/layim/css/layim.css')}}">
         <!-- END THEME LAYOUT STYLES -->
         <!-- <link rel="shortcut icon" href="favicon.ico" /> -->
         </head>
@@ -118,13 +119,19 @@
                 <i class="icon-arrow-up"></i>
             </div>
         </div>
+        <input type="hidden" id="rong_token" value="{{$rong_token}}">
         <!--[if lt IE 9]>
         <script src="../assets/global/plugins/respond.min.js"></script>
         <script src="../assets/global/plugins/excanvas.min.js"></script> 
         <![endif]-->
         <!-- BEGIN CORE PLUGINS -->
         <script src="{{asset('backend/plugins/jquery.min.js')}}" type="text/javascript"></script>
+        <script src="http://cdn.ronghub.com/RongIMLib-2.1.0.min.js"></script>
+        <script src="http://res.sentsin.com/lay/lib/layer/1.8.5/layer.min.js"></script>
+        <script src="{{asset('backend/plugins/layim/lay/layim.js')}}"></script>
+        <script src="{{asset('backend/js/cloud.js')}}"></script>
         <script src="{{asset('backend/plugins/bootstrap/js/bootstrap.min.js')}}" type="text/javascript"></script>
+
         <script src="{{asset('backend/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('backend/plugins/jquery-slimscroll/jquery.slimscroll.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('backend/plugins/jquery.blockui.min.js')}}" type="text/javascript"></script>

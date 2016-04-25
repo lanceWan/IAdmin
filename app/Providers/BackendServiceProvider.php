@@ -2,7 +2,6 @@
 namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use MenuRepository;
-use Auth;
 class BackendServiceProvider extends ServiceProvider
 {
     /**
@@ -36,6 +35,9 @@ class BackendServiceProvider extends ServiceProvider
         });
         $this->app->singleton('MenuRepository', function($app){
             return new \App\Repositories\admin\MenuRepository();
+        });
+        $this->app->singleton('ChatRepository', function($app){
+            return new \App\Repositories\admin\ChatRepository();
         });
     }
 }

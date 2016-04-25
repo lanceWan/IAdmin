@@ -31,8 +31,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/home', 'HomeController@index');
 });
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web', 'auth']], function ($router) {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web', 'auth','rong']], function ($router) {
     $router->get('/', 'IndexController@index');
+    $router->get('/friend', 'IndexController@findMyFriend');
     $router->get('/i18n', 'IndexController@dataTableI18n');
 
     /*用户*/
