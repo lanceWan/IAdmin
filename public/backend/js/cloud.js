@@ -6,7 +6,8 @@ $(function() {
     // 连接融云服务器。
     RongIMClient.connect(token, {
     onSuccess: function(userId) {
-      console.log("Login successfully." + userId);
+        console.log("Login successfully." + userId);
+        // RongIMClient.getInstance().disconnect();
     },
     onTokenIncorrect: function() {
       console.log('token无效');
@@ -73,7 +74,7 @@ $(function() {
             switch(message.messageType){
                 case RongIMClient.MessageType.TextMessage:
                        // 发送的消息内容将会被打印
-                    console.log(message.content.content);
+                    console.log('对方发送的消息：'+message.content.content);
                     break;
                 case RongIMClient.MessageType.VoiceMessage:
                     // 对声音进行预加载                
@@ -117,6 +118,17 @@ $(function() {
                     // 自定义消息
                     // do something...
             }
+        }
+    });
+
+
+    RongIMClient.getInstance().hasRemoteUnreadMessages(token, {
+        onSuccess: function(hasMsg) {
+           //hasMsg为true表示有未读消息，为false没有未读消息
+           console.log(hasMsg);
+        },
+        onError: function(error) {
+          console.log("hasRemoteUnreadMessages,errorcode:" + error);
         }
     });
 });

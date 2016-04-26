@@ -16,14 +16,15 @@ var config = {
     right: -232,
     api: {
         friend: '/admin/friend', //好友列表接口/backend/plugins/layim/friend.json
-        group: '/backend/plugins/layim/group.json', //群组列表接口
-        chatlog: '/backend/plugins/layim/chatlog.json', //聊天记录接口
-        groups: '/backend/plugins/layim/groups.json', //群组成员接口
-        sendurl: '' //发送消息接口
+        group: '', //群组列表接口
+        chatlog: '', //聊天记录接口
+        groups: '', //群组成员接口
+        sendurl: '/admin/chat/sendMessage' //发送消息接口
     },
     user: { //当前用户信息
-        name: '游客',
-        face: 'http://tp1.sinaimg.cn/1571889140/180/40030060651/1'
+        id  : $('#user_id').val(),
+        name: $('#name').val(),
+        face: $('#face').val(),
     },
 
     //自动回复内置文案，也可动态读取数据库配置
@@ -401,6 +402,7 @@ xxim.transmit = function(){
             layer.tips('说点啥呗！', '#layim_write', 2);
             node.imwrite.focus();
         } else {
+
             //此处皆为模拟
             var keys = xxim.nowchat.type + xxim.nowchat.id;
 
@@ -425,9 +427,10 @@ xxim.transmit = function(){
             };
 
             log.imarea = xxim.chatbox.find('#layim_area'+ keys);
-
+            var myDate = new Date();
+            var mytime = myDate.toLocaleString();
             log.imarea.append(log.html({
-                time: '2014-04-26 0:37',
+                time: mytime,
                 name: config.user.name,
                 face: config.user.face,
                 content: data.content
@@ -435,21 +438,11 @@ xxim.transmit = function(){
             node.imwrite.val('').focus();
             log.imarea.scrollTop(log.imarea[0].scrollHeight);
 
-            setTimeout(function(){
-                log.imarea.append(log.html({
-                    time: '2014-04-26 0:38',
-                    name: xxim.nowchat.name,
-                    face: xxim.nowchat.face,
-                    content: config.autoReplay[(Math.random()*config.autoReplay.length) | 0]
-                }));
-                log.imarea.scrollTop(log.imarea[0].scrollHeight);
-            }, 500);
-
-            /*
-            that.json(config.api.sendurl, data, function(datas){
-
+            var userId = RongIMClient.getInstance().getCurrentUserId();
+            // console.log('userId = ' + userId);
+            config.json(config.api.sendurl,'post', {fromUserId:userId,toUserId:xxim.nowchat.id,objectName:'RC:TxtMsg',content:{"content":data.content,"user":"{id: "+config.user.id+",name:"+config.user.name+",icon:"+config.user.id+"}","extra":""}}, function(datas){
+                console.log(datas);
             });
-            */
         }
 
     };
@@ -589,6 +582,67 @@ xxim.getDates = function(index){
     });
 };
 
+//有消息时弹出提示
+xxim.toastr = function(othis,content) {
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "positionClass": "toast-top-right",
+        "showDuration": "1000",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut",
+        "onclick":function() {
+            xxim.popchatbox(othis);
+            xxim.showLog(othis,content);
+        }
+    }
+    toastr.info(content,othis.find('.xxim_onename').text());
+};
+
+xxim.showLog = function(othis,content) {
+    var node = xxim.node, dataId = othis.attr('data-id'), param = {
+        id: dataId, //用户ID
+        type: othis.attr('type'),
+        name: othis.find('.xxim_onename').text(),  //用户名
+        face: othis.find('.xxim_oneface').attr('src'),  //用户头像
+        href: 'profile.html?user=' + dataId //用户主页
+    }, key = param.type + dataId,log = {};
+
+    //聊天模版
+    log.html = function(param, type){
+        return '<li class="'+ (type === 'me' ? 'layim_chateme' : '') +'">'
+            +'<div class="layim_chatuser">'
+                + function(){
+                    if(type === 'me'){
+                        return '<span class="layim_chattime">'+ param.time +'</span>'
+                               +'<span class="layim_chatname">'+ param.name +'</span>'
+                               +'<img src="'+ param.face +'" >';
+                    } else {
+                        return '<img src="'+ param.face +'" >'
+                               +'<span class="layim_chatname">'+ param.name +'</span>'
+                               +'<span class="layim_chattime">'+ param.time +'</span>';
+                    }
+                }()
+            +'</div>'
+            +'<div class="layim_chatsay">'+ param.content +'<em class="layim_zero"></em></div>'
+        +'</li>';
+    };
+    log.imarea = $('#layim_area'+ key);
+    console.log($('#layim_area'+ key));
+    log.imarea.append(log.html({
+        time: '2014-04-26 0:38',
+        name: param.name,
+        face: param.face,
+        content: content
+    }));
+    // log.imarea.scrollTop(log.imarea[0].scrollHeight);
+};
+
 //渲染骨架
 xxim.view = (function(){
     var xximNode = xxim.layimNode = $('<div id="xximmm" class="xxim_main">'
@@ -626,7 +680,141 @@ xxim.view = (function(){
     xxim.getDates(0);
     xxim.event();
     xxim.layinit();
-}());
 
+    RongIMClient.init("mgb7ka1nbtqzg");
+    var token = $('#rong_token').val();
+
+    // 连接融云服务器。
+    RongIMClient.connect(token, {
+    onSuccess: function(userId) {
+        console.log("Login successfully." + userId);
+        // RongIMClient.getInstance().disconnect();
+    },
+    onTokenIncorrect: function() {
+      console.log('token无效');
+    },
+    onError:function(errorCode){
+          var info = '';
+          switch (errorCode) {
+            case RongIMLib.ErrorCode.TIMEOUT:
+              info = '超时';
+              break;
+            case RongIMLib.ErrorCode.UNKNOWN_ERROR:
+              info = '未知错误';
+              break;
+            case RongIMLib.ErrorCode.UNACCEPTABLE_PaROTOCOL_VERSION:
+              info = '不可接受的协议版本';
+              break;
+            case RongIMLib.ErrorCode.IDENTIFIER_REJECTED:
+              info = 'appkey不正确';
+              break;
+            case RongIMLib.ErrorCode.SERVER_UNAVAILABLE:
+              info = '服务器不可用';
+              break;
+          }
+          console.log(errorCode);
+          console.log('info :'+info);
+        }
+    });
+
+    // 设置连接监听状态 （ status 标识当前连接状态）
+    // 连接状态监听器
+    RongIMClient.setConnectionStatusListener({
+    onChanged: function (status) {
+        switch (status) {
+            //链接成功
+            case RongIMLib.ConnectionStatus.CONNECTED:
+                console.log('链接成功');
+                break;
+            //正在链接
+            case RongIMLib.ConnectionStatus.CONNECTING:
+                console.log('正在链接');
+                break;
+            //重新链接
+            case RongIMLib.ConnectionStatus.DISCONNECTED:
+                console.log('断开连接');
+                break;
+            //其他设备登陆
+            case RongIMLib.ConnectionStatus.KICKED_OFFLINE_BY_OTHER_CLIENT:
+                console.log('其他设备登陆');
+                break;
+              //网络不可用
+            case RongIMLib.ConnectionStatus.NETWORK_UNAVAILABLE:
+              console.log('网络不可用');
+              break;
+            }
+    }});
+
+
+
+    // 消息监听器
+    RongIMClient.setOnReceiveMessageListener({
+        // 接收到的消息
+        onReceived: function (message) {
+            // 判断消息类型
+            switch(message.messageType){
+                case RongIMClient.MessageType.TextMessage:
+                       // 发送的消息内容将会被打印
+                    // console.log('对方发送的消息：'+message);
+                    var senderUserId = message.senderUserId;
+                    var othis =  $('li.xxim_childnode[data-id='+senderUserId+']');
+                    xxim.toastr(othis,message.content.content);
+                    break;
+                case RongIMClient.MessageType.VoiceMessage:
+                    // 对声音进行预加载                
+                    // message.content.content 格式为 AMR 格式的 base64 码
+                    RongIMLib.RongIMVoice.preLoaded(message.content.content);
+                    break;
+                case RongIMClient.MessageType.ImageMessage:
+                    // do something...
+                    break;
+                case RongIMClient.MessageType.DiscussionNotificationMessage:
+                    // do something...
+                    break;
+                case RongIMClient.MessageType.LocationMessage:
+                    // do something...
+                    break;
+                case RongIMClient.MessageType.RichContentMessage:
+                    // do something...
+                    break;
+                case RongIMClient.MessageType.DiscussionNotificationMessage:
+                    // do something...
+                    break;
+                case RongIMClient.MessageType.InformationNotificationMessage:
+                    // do something...
+                    break;
+                case RongIMClient.MessageType.ContactNotificationMessage:
+                    // do something...
+                    break;
+                case RongIMClient.MessageType.ProfileNotificationMessage:
+                    // do something...
+                    break;
+                case RongIMClient.MessageType.CommandNotificationMessage:
+                    // do something...
+                    break;
+                case RongIMClient.MessageType.CommandMessage:
+                    // do something...
+                    break;
+                case RongIMClient.MessageType.UnknownMessage:
+                    // do something...
+                    break;
+                default:
+                    // 自定义消息
+                    // do something...
+            }
+        }
+    });
+
+
+    // RongIMClient.getInstance().hasRemoteUnreadMessages(token, {
+    //     onSuccess: function(hasMsg) {
+    //        //hasMsg为true表示有未读消息，为false没有未读消息
+    //        console.log(hasMsg);
+    //     },
+    //     onError: function(error) {
+    //       console.log("hasRemoteUnreadMessages,errorcode:" + error);
+    //     }
+    // });
+}());
 }(window);
 

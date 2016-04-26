@@ -44,4 +44,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web'
     require(__DIR__ . '/Routes/MenuRoute.php');
     // 角色
     require(__DIR__ . '/Routes/RoleRoute.php');
+    //聊天
+    require(__DIR__ . '/Routes/ChatRoute.php');
 });
