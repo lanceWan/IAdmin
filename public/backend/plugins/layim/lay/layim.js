@@ -556,7 +556,7 @@ xxim.getDates = function(index){
                             +'<ul class="xxim_chatlist">';
                         item = datas.data.item;
                         for(var j = 0; j < item.length; j++){
-                            str += '<li data-id="'+ item[j].id +'" class="xxim_childnode" type="'+ (index === 0 ? 'one' : 'group') +'"><img src="'+ item[j].face +'" class="xxim_oneface"><span class="xxim_onename">'+ item[j].name +'</span></li>';
+                            str += '<li data-id="'+ item[j].id +'" class="xxim_childnode" type="'+ (index === 0 ? 'one' : 'group') +'"><img src="'+ item[j].face +'" class="xxim_oneface"><span class="xxim_onename">'+ item[j].name +'</span><span class="label label-danger pull-right"> New </span></li>';
                         }
                         str += '</ul></li>';
                     }
@@ -633,14 +633,15 @@ xxim.showLog = function(othis,content) {
         +'</li>';
     };
     log.imarea = $('#layim_area'+ key);
-    console.log($('#layim_area'+ key));
+    var myDate = new Date();
+    var mytime = myDate.toLocaleString();
     log.imarea.append(log.html({
-        time: '2014-04-26 0:38',
+        time: mytime,
         name: param.name,
         face: param.face,
         content: content
     }));
-    // log.imarea.scrollTop(log.imarea[0].scrollHeight);
+    log.imarea.scrollTop(log.imarea[0].scrollHeight);
 };
 
 //渲染骨架
@@ -754,11 +755,16 @@ xxim.view = (function(){
             // 判断消息类型
             switch(message.messageType){
                 case RongIMClient.MessageType.TextMessage:
-                       // 发送的消息内容将会被打印
-                    // console.log('对方发送的消息：'+message);
+                    // 发送的消息内容将会被打印
                     var senderUserId = message.senderUserId;
                     var othis =  $('li.xxim_childnode[data-id='+senderUserId+']');
-                    xxim.toastr(othis,message.content.content);
+
+                    var chatbox = $('#layim_chatbox');
+                    if (chatbox.parents('.xubox_layer').length > 0) {
+                        xxim.showLog(othis,message.content.content);
+                    }else{
+                        xxim.toastr(othis,message.content.content);
+                    }
                     break;
                 case RongIMClient.MessageType.VoiceMessage:
                     // 对声音进行预加载                
