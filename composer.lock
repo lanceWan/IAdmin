@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c6ea9697c6024df88ae9d5013df41786",
+    "hash": "c19336a37cc01021703fa6a791552b90",
     "content-hash": "965f7451657cc16c89ee4d7519887867",
     "packages": [
         {
@@ -494,27 +494,39 @@
         },
         {
             "name": "hsky/actionlog",
-            "version": "1.0.0",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/xezw211/actionlog.git",
-                "reference": "5398003e85a79243711a14ee53bd187c39fcb682"
+                "reference": "0c28eea9587d2e8b8217aad7e23a203668ab3f1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/xezw211/actionlog/zipball/5398003e85a79243711a14ee53bd187c39fcb682",
-                "reference": "5398003e85a79243711a14ee53bd187c39fcb682",
+                "url": "https://api.github.com/repos/xezw211/actionlog/zipball/0c28eea9587d2e8b8217aad7e23a203668ab3f1d",
+                "reference": "0c28eea9587d2e8b8217aad7e23a203668ab3f1d",
                 "shasum": ""
             },
+            "require": {
+                "php": ">=5.5.9"
+            },
             "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Hsky\\Actionlog\\": "src/"
+                }
+            },
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
             "authors": [
                 {
                     "name": "hsky",
                     "email": "xezw211@gmail.com"
                 }
             ],
-            "time": "2016-04-21 09:49:06"
+            "description": "The helper class for Laravel 5 applications to get record user log and api log",
+            "time": "2016-04-22 04:01:53"
         },
         {
             "name": "intervention/image",
