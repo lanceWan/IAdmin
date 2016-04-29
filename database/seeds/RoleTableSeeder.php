@@ -20,9 +20,21 @@ class RoleTableSeeder extends Seeder
         ]);
 
         $userRole = Role::create([
-            'name' => 'User',
-            'slug' => 'user',
-            'description' => '普通用户',
+            'name' => '研究发起者',
+            'slug' => 'research.creator',
+            'description' => '研究发起者',
+        ]);
+
+        $userRole = Role::create([
+            'name' => '主要研究者',
+            'slug' => 'research.main',
+            'description' => '主要研究者',
+        ]);
+
+        $userRole = Role::create([
+            'name' => '研究者',
+            'slug' => 'research.user',
+            'description' => '研究者',
         ]);
         
         /*管理员初始化所有权限*/
@@ -32,11 +44,5 @@ class RoleTableSeeder extends Seeder
             $adminRole->attachPermission($all_permission);
         }
 
-        /**
-         * 普通用户赋予一般权限
-         */
-        $loginBackendPer = Permission::where('slug', '=', 'admin.systems.login')->first();
-        
-        $userRole->attachPermission($loginBackendPer);
     }
 }
