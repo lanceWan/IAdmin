@@ -12,9 +12,11 @@ class BackendServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //共享菜单数据
-        $menus = MenuRepository::index();
-        view()->share('menus', $menus);
+        view()->composer('*', function ($view) {
+            //共享菜单数据
+            $menus = MenuRepository::index();
+            $view->with('menus',$menus);
+        });
     }
 
     /**
