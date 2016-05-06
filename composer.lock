@@ -330,33 +330,29 @@
         },
         {
             "name": "fzaninotto/faker",
-            "version": "v1.5.0",
+            "version": "v1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "d0190b156bcca848d401fb80f31f504f37141c8d"
+                "reference": "44f9a286a04b80c76a4e5fb7aad8bb539b920123"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/d0190b156bcca848d401fb80f31f504f37141c8d",
-                "reference": "d0190b156bcca848d401fb80f31f504f37141c8d",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/44f9a286a04b80c76a4e5fb7aad8bb539b920123",
+                "reference": "44f9a286a04b80c76a4e5fb7aad8bb539b920123",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": "^5.3.3|^7.0"
             },
             "require-dev": {
+                "ext-intl": "*",
                 "phpunit/phpunit": "~4.0",
                 "squizlabs/php_codesniffer": "~1.5"
             },
-            "suggest": {
-                "ext-intl": "*"
-            },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "1.5.x-dev"
-                }
+                "branch-alias": []
             },
             "autoload": {
                 "psr-4": {
@@ -378,7 +374,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2015-05-29 06:29:14"
+            "time": "2016-04-29 12:21:54"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -494,16 +490,16 @@
         },
         {
             "name": "hsky/actionlog",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/xezw211/actionlog.git",
-                "reference": "0c28eea9587d2e8b8217aad7e23a203668ab3f1d"
+                "reference": "e820fc6008df27c9eccbca644900aa2700895dc0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/xezw211/actionlog/zipball/0c28eea9587d2e8b8217aad7e23a203668ab3f1d",
-                "reference": "0c28eea9587d2e8b8217aad7e23a203668ab3f1d",
+                "url": "https://api.github.com/repos/xezw211/actionlog/zipball/e820fc6008df27c9eccbca644900aa2700895dc0",
+                "reference": "e820fc6008df27c9eccbca644900aa2700895dc0",
                 "shasum": ""
             },
             "require": {
@@ -526,20 +522,20 @@
                 }
             ],
             "description": "The helper class for Laravel 5 applications to get record user log and api log",
-            "time": "2016-04-22 04:01:53"
+            "time": "2016-05-03 02:02:02"
         },
         {
             "name": "intervention/image",
-            "version": "2.3.6",
+            "version": "2.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/image.git",
-                "reference": "e368d262887dbb2fdfaf710880571ede51e9c0e6"
+                "reference": "22088b04728a039bd1fc32f7e79a89a118b78698"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/image/zipball/e368d262887dbb2fdfaf710880571ede51e9c0e6",
-                "reference": "e368d262887dbb2fdfaf710880571ede51e9c0e6",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/22088b04728a039bd1fc32f7e79a89a118b78698",
+                "reference": "22088b04728a039bd1fc32f7e79a89a118b78698",
                 "shasum": ""
             },
             "require": {
@@ -588,7 +584,7 @@
                 "thumbnail",
                 "watermark"
             ],
-            "time": "2016-02-26 18:18:19"
+            "time": "2016-04-26 14:08:40"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -780,16 +776,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.2.30",
+            "version": "v5.2.31",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "ecfbbfbf96105439cc9a40bc78277bdb0268e34d"
+                "reference": "2fa2797604bf54b06faf7bb139a9fc0d66826fea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/ecfbbfbf96105439cc9a40bc78277bdb0268e34d",
-                "reference": "ecfbbfbf96105439cc9a40bc78277bdb0268e34d",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/2fa2797604bf54b06faf7bb139a9fc0d66826fea",
+                "reference": "2fa2797604bf54b06faf7bb139a9fc0d66826fea",
                 "shasum": ""
             },
             "require": {
@@ -905,20 +901,20 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2016-04-19 19:12:18"
+            "time": "2016-04-27 13:02:09"
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.20",
+            "version": "1.0.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "e87a786e3ae12a25cf78a71bb07b4b384bfaa83a"
+                "reference": "bd73a91703969a2d20ab4bfbf971d6c2cbe36612"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/e87a786e3ae12a25cf78a71bb07b4b384bfaa83a",
-                "reference": "e87a786e3ae12a25cf78a71bb07b4b384bfaa83a",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/bd73a91703969a2d20ab4bfbf971d6c2cbe36612",
+                "reference": "bd73a91703969a2d20ab4bfbf971d6c2cbe36612",
                 "shasum": ""
             },
             "require": {
@@ -988,7 +984,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2016-03-14 21:54:11"
+            "time": "2016-04-28 06:53:12"
         },
         {
             "name": "mews/captcha",
@@ -1323,21 +1319,21 @@
         },
         {
             "name": "orchestra/testbench",
-            "version": "v3.2.3",
+            "version": "v3.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/testbench.git",
-                "reference": "86e105a11087a91dc5a863ed82a9a185bdb2716a"
+                "reference": "1cfc182f10e7d26aeac9a7a567334bdaf3279b08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench/zipball/86e105a11087a91dc5a863ed82a9a185bdb2716a",
-                "reference": "86e105a11087a91dc5a863ed82a9a185bdb2716a",
+                "url": "https://api.github.com/repos/orchestral/testbench/zipball/1cfc182f10e7d26aeac9a7a567334bdaf3279b08",
+                "reference": "1cfc182f10e7d26aeac9a7a567334bdaf3279b08",
                 "shasum": ""
             },
             "require": {
                 "fzaninotto/faker": "~1.4",
-                "laravel/framework": "~5.2.15",
+                "laravel/framework": "~5.2.28",
                 "orchestra/database": "~3.2.0",
                 "php": ">=5.5.0",
                 "symfony/css-selector": "2.8.*|3.0.*",
@@ -1382,7 +1378,7 @@
                 "orchestral",
                 "testing"
             ],
-            "time": "2016-03-04 01:20:59"
+            "time": "2016-05-02 16:26:45"
         },
         {
             "name": "paragonie/random_compat",
@@ -1593,16 +1589,16 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.4.1",
+            "version": "v5.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "0697e6aa65c83edf97bb0f23d8763f94e3f11421"
+                "reference": "d8db871a54619458a805229a057ea2af33c753e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/0697e6aa65c83edf97bb0f23d8763f94e3f11421",
-                "reference": "0697e6aa65c83edf97bb0f23d8763f94e3f11421",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/d8db871a54619458a805229a057ea2af33c753e8",
+                "reference": "d8db871a54619458a805229a057ea2af33c753e8",
                 "shasum": ""
             },
             "require": {
@@ -1642,7 +1638,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2015-06-06 14:19:39"
+            "time": "2016-05-01 08:45:47"
         },
         {
             "name": "symfony/console",
@@ -2534,23 +2530,23 @@
         },
         {
             "name": "vlucas/phpdotenv",
-            "version": "v2.2.0",
+            "version": "v2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "9caf304153dc2288e4970caec6f1f3b3bc205412"
+                "reference": "63f37b9395e8041cd4313129c08ece896d06ca8e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/9caf304153dc2288e4970caec6f1f3b3bc205412",
-                "reference": "9caf304153dc2288e4970caec6f1f3b3bc205412",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/63f37b9395e8041cd4313129c08ece896d06ca8e",
+                "reference": "63f37b9395e8041cd4313129c08ece896d06ca8e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.9"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8|^5.0"
+                "phpunit/phpunit": "^4.8 || ^5.0"
             },
             "type": "library",
             "extra": {
@@ -2565,7 +2561,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD"
+                "BSD-3-Clause-Attribution"
             ],
             "authors": [
                 {
@@ -2575,13 +2571,12 @@
                 }
             ],
             "description": "Loads environment variables from `.env` to `getenv()`, `$_ENV` and `$_SERVER` automagically.",
-            "homepage": "http://github.com/vlucas/phpdotenv",
             "keywords": [
                 "dotenv",
                 "env",
                 "environment"
             ],
-            "time": "2015-12-29 15:10:30"
+            "time": "2016-04-15 10:48:49"
         }
     ],
     "packages-dev": [

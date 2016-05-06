@@ -3,8 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-/*患者表*/
-class CreatePatientsTable extends Migration
+class CreateSharePatientsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +12,14 @@ class CreatePatientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('patients', function (Blueprint $table) {
+        Schema::create('share_patients', function (Blueprint $table) {
             $table->increments('id');
 
             $table->integer('project_id')->unsigned()->default(0)->comment('项目id');
-            $table->integer('research_center_id')->unsigned()->default(0)->comment('研究中心id');
             $table->integer('user_id')->unsigned()->default(0)->comment('用户id');
-
-            $table->string('name')->default('')->comment("患者姓名");
-            $table->string('mobile')->default('')->comment("患者手机");
-            $table->string('email')->default('')->comment("患者邮箱");
-            $table->string('number')->default('')->comment('患者编号');
+            $table->integer('patient_id')->unsigned()->default(0)->comment('病例id');
+            $table->integer('from_research_center_id')->unsigned()->default(0)->comment('来源于哪个研究中心');
+            $table->integer('to_research_center_id')->unsigned()->default(0)->comment('共享给哪个研究中心');
 
             $table->timestamps();
         });
@@ -36,6 +32,6 @@ class CreatePatientsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('patients');
+        Schema::drop('share_patients');
     }
 }

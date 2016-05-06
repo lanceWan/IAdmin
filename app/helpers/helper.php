@@ -39,3 +39,16 @@ if(!function_exists('confirmEmail')){
 		return trans('labels.user.audit');
 	}
 }
+
+/**
+ * 验证参数是否为空
+ */
+if(!function_exists('checkEmpty')){
+	function checkEmpty($key){
+		if(empty($key)){
+			return false;
+		}
+
+		return true;
+	}
+}

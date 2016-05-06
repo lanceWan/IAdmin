@@ -16,8 +16,30 @@ return[
 		'active' => 1,
 		'ban' => 2,
 		'trash' => 99,
-		'destory' => -1
+		'destory' => -1,
+
+		/**
+		 * sponsor  研究发起者
+		 * major    主要研究者
+		 * normal   研究者
+		 */
+		'researcher' => [
+			'sponsor' => 1,
+			'major' => 2,
+			'normal' => 3,
+		],
+		'project' => [
+			'launch' => 1,
+			'enter' => 2,
+			'follow' => 3,
+			'finish' => 4,
+			'exit' => 5,
+		],
+
+
 	],
+
+	
 	////////
 	//分页//
 	////////

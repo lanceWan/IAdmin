@@ -16,8 +16,9 @@ class CreateDatasetInterviewsTable extends Migration
         Schema::create('dataset_interviews', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('dataset_id')->unsigned()->default(0)->comment('数据集id');
             $table->integer('interview_id')->unsigned()->default(0)->comment('随访id');
+            $table->integer('dataset_id')->unsigned()->default(0)->comment('数据集id');
+            $table->integer('template_id')->unsigned()->default(0)->comment('模板id');
 
             $table->timestamps();
         });

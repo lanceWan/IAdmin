@@ -1,10 +1,11 @@
 @extends('layouts.admin')
 @section('content')
+
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
-            <a href="index.html">Home</a>
-            <i class="fa fa-circle"></i>
+            <a href="index.html">Home </a>
+            <i class="fa fa-circle"></i>asfasf
         </li>
         <li>
             <span>Page Layouts</span>
@@ -15,7 +16,9 @@
 <!-- BEGIN PAGE TITLE-->
 <h3 class="page-title"> Blank Page Layout
     <small>blank page layout</small>
+    @plugin('admin.index,add')
 </h3>
+
 <!-- END PAGE TITLE-->
 <!-- END PAGE HEADER-->
 <div class="note note-info">

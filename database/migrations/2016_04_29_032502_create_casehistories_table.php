@@ -22,10 +22,13 @@ class CreateCasehistoriesTable extends Migration
             $table->integer('dataset_id')->unsigned()->default(0)->comment('数据集id');
             $table->integer('patient_id')->unsigned()->default(0)->comment('患者id');
             $table->integer('user_id')->unsigned()->default(0)->comment('用户id');
+            $table->integer('research_center_id')->unsigned()->default(0)->comment('研究中心id');
 
             $table->text('data')->comment('患者关于项目下面的随访中数据集中的数据,其中附件使用attach作为最外层外键');
             $table->tinyInteger('complete')->unsigned()->default(2)->comment('1-数据录入完整, 2-数据录入不完整');
             $table->tinyInteger('status')->unsigned()->default(1)->comment('1-正常， 2-删除');
+            $table->tinyInteger('accessory_status')->unsigned()->default(2)->comment('有无附件,1-有附件，2-无附件');
+            $table->tinyInteger('new_accessory_status')->unsigned()->default(2)->comment('有无新附件,1-有附件，2-无附件');
 
             $table->timestamps();
         });

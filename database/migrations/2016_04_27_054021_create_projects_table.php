@@ -27,7 +27,6 @@ class CreateProjectsTable extends Migration
             $table->string('ethics_number')->default('')->comment('项目伦理号');
             $table->tinyInteger('share')->default(2)->comment('是否共享项目:1-共享, 2-私有');
             $table->tinyInteger('status')->default(1)->comment('项目阶段:1-启动期，2-入组期，3-随访期，4-已结题，5-已退出');
-
             $table->timestamps();
         });
     }

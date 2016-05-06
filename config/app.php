@@ -166,6 +166,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Mews\Captcha\CaptchaServiceProvider::class,
         // Hsky\Actionlog\ActionlogServiceProvider::class,
+        Hsky\PluginManager\PluginManagerServiceProvider::class,
 
     ],
 
