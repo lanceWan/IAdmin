@@ -17,7 +17,6 @@
         <link href="{{asset('backend/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('backend/plugins/uniform/css/uniform.default.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('backend/plugins/bootstrap-switch/css/bootstrap-switch.min.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{asset('backend/plugins/bootstrap-toastr/toastr.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- END GLOBAL MANDATORY STYLES -->
         @yield('css')
         <!-- BEGIN THEME GLOBAL STYLES -->
@@ -27,7 +26,6 @@
         <!-- BEGIN THEME LAYOUT STYLES -->
         <link href="{{asset('backend/css/layout.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('backend/css/darkblue.min.css')}}" rel="stylesheet" type="text/css" id="style_color" />
-        <link rel="stylesheet" type="text/css" href="{{asset('backend/plugins/layim/css/layim.css')}}">
         <!-- END THEME LAYOUT STYLES -->
         <!-- <link rel="shortcut icon" href="favicon.ico" /> -->
         </head>
@@ -55,27 +53,26 @@
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <img alt="" class="img-circle" src="{{asset('backend/img/avatar3_small.jpg')}}" />
                                 <span class="username username-hide-on-mobile"> {{Auth::user()->name}}</span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
-                                    <a href="page_user_profile_1.html">
+                                    <a href="#">
                                         <i class="icon-user"></i> My Profile </a>
                                 </li>
                                 <li>
-                                    <a href="app_calendar.html">
+                                    <a href="#">
                                         <i class="icon-calendar"></i> My Calendar </a>
                                 </li>
                                 <li>
-                                    <a href="app_inbox.html">
+                                    <a href="#">
                                         <i class="icon-envelope-open"></i> My Inbox
                                         <span class="badge badge-danger"> 3 </span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="app_todo.html">
+                                    <a href="#">
                                         <i class="icon-rocket"></i> My Tasks
                                         <span class="badge badge-success"> 7 </span>
                                     </a>
@@ -105,7 +102,8 @@
             <div class="page-content-wrapper">
                 <!-- BEGIN CONTENT BODY -->
                 <div class="page-content">
-                    @yield('content')
+                    @section('content')
+                    @show
                 </div>
                 <!-- END CONTENT BODY -->
             </div>
@@ -120,23 +118,13 @@
                 <i class="icon-arrow-up"></i>
             </div>
         </div>
-        <input type="hidden" id="rong_token" value="{{$rong_token}}">
-        <input type="hidden" id="user_id" value="{{Auth::user()->id}}">
-        <input type="hidden" id="name" value="{{Auth::user()->name}}">
-        <input type="hidden" id="face" value="{{Auth::user()->image}}">
         <!--[if lt IE 9]>
         <script src="../assets/global/plugins/respond.min.js"></script>
         <script src="../assets/global/plugins/excanvas.min.js"></script> 
         <![endif]-->
         <!-- BEGIN CORE PLUGINS -->
         <script src="{{asset('backend/plugins/jquery.min.js')}}" type="text/javascript"></script>
-        <script src="{{asset('backend/plugins/bootstrap-toastr/toastr.min.js')}}" type="text/javascript"></script>
-        <script src="http://cdn.ronghub.com/RongIMLib-2.1.0.min.js"></script>
-        <script src="{{asset('backend/plugins/layim/lay/layer/layer.min.js')}}"></script>
-        <script src="{{asset('backend/plugins/layim/lay/layim.js')}}"></script>
-        
         <script src="{{asset('backend/plugins/bootstrap/js/bootstrap.min.js')}}" type="text/javascript"></script>
-
         <script src="{{asset('backend/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('backend/plugins/jquery-slimscroll/jquery.slimscroll.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('backend/plugins/jquery.blockui.min.js')}}" type="text/javascript"></script>

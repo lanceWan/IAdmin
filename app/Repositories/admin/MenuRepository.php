@@ -14,8 +14,8 @@ class MenuRepository
 	public function index()
 	{
 		//判断是否缓存menu数据
-		if (Cache::has('menuList')) {
-			return Cache::get('menuList');
+		if (Cache::has(config('admin.global.cache.menu'))) {
+			return Cache::get(config('admin.global.cache.menu'));
 		}
 		$menuList = $this->setMenuListCache();
 		return $menuList;
@@ -61,7 +61,7 @@ class MenuRepository
 	    		}
 	    	}
 			//缓存数据
-			Cache::forever('menuList', $menuList);
+			Cache::forever(config('admin.global.cache.menu'), $menuList);
 			return $menuList;
 		}
 		return [];

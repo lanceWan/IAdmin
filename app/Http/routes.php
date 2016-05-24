@@ -27,13 +27,12 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    Route::auth();
     Route::get('/home', 'HomeController@index');
+    Route::auth();
 });
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web', 'auth','rong']], function ($router) {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web', 'auth']], function ($router) {
     $router->get('/', 'IndexController@index');
-    $router->get('/friend', 'IndexController@findMyFriend');
     $router->get('/i18n', 'IndexController@dataTableI18n');
 
     /*用户*/
@@ -44,6 +43,4 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web'
     require(__DIR__ . '/Routes/MenuRoute.php');
     // 角色
     require(__DIR__ . '/Routes/RoleRoute.php');
-    //聊天
-    require(__DIR__ . '/Routes/ChatRoute.php');
 });

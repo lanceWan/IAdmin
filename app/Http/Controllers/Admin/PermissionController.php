@@ -7,6 +7,14 @@ use PermissionRepository;
 use App\Http\Requests\PermissionRequest;
 class PermissionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('checkPermission:'.config('admin.permissions.permission.list'), ['only' => ['index', 'ajaxIndex']]);
+        $this->middleware('checkPermission:'.config('admin.permissions.permission.create'), ['only' => ['create', 'store']]);
+        $this->middleware('checkPermission:'.config('admin.permissions.permission.edit'), ['only' => ['edit', 'update']]);
+        $this->middleware('checkPermission:'.config('admin.global.permission.action').',true', ['only' => ['mark']]);
+        $this->middleware('checkPermission:'.config('admin.permissions.permission.destory'), ['only' => ['destroy']]);
+    }
     public function index()
     {
     	return view('admin.permission.list');

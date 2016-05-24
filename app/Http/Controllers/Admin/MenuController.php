@@ -7,6 +7,13 @@ use MenuRepository;
 use App\Http\Requests\MenuRequest;
 class MenuController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('checkPermission:'.config('admin.permissions.menu.list'), ['only' => ['index', 'sort']]);
+        $this->middleware('checkPermission:'.config('admin.permissions.menu.create'), ['only' => ['store']]);
+        $this->middleware('checkPermission:'.config('admin.permissions.menu.edit'), ['only' => ['edit', 'update']]);
+        $this->middleware('checkPermission:'.config('admin.permissions.menu.destory'), ['only' => ['destroy']]);
+    }
 	/**
 	 * 菜单首页
 	 * @author 晚黎

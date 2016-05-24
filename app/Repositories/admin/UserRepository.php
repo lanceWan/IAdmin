@@ -125,11 +125,11 @@ class UserRepository
 
 		if ($user->fill($userData)->save()) {
 			//自动更新用户权限关系
-			if ($userData['permission']) {
+			if (isset($userData['permission']) && $userData['permission']) {
 				$user->permission()->sync($userData['permission']);
 			}
 			// 自动更新用户角色关系
-			if ($userData['role']) {
+			if (isset($userData['role']) && $userData['role']) {
 				$user->role()->sync($userData['role']);
 			}
 			Flash::success(trans('alerts.users.created_success'));

@@ -9,6 +9,16 @@ use App\Http\Requests\RoleRequest;
 use PermissionRepository;
 class RoleController extends Controller
 {	
+
+    public function __construct()
+    {
+        $this->middleware('checkPermission:'.config('admin.permissions.role.list'), ['only' => ['index', 'ajaxIndex']]);
+        $this->middleware('checkPermission:'.config('admin.permissions.role.create'), ['only' => ['create', 'store']]);
+        $this->middleware('checkPermission:'.config('admin.permissions.role.edit'), ['only' => ['edit', 'update']]);
+        $this->middleware('checkPermission:'.config('admin.global.role.action').',true', ['only' => ['mark']]);
+        $this->middleware('checkPermission:'.config('admin.permissions.role.destory'), ['only' => ['destroy']]);
+        $this->middleware('checkPermission:'.config('admin.permissions.role.show'), ['only' => ['show']]);
+    }
 	/**
 	 * 角色列表
 	 * @author 晚黎

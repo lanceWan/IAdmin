@@ -76,6 +76,8 @@ return [
     'timezone'             => ':attribute 必须是一个合法的时区值。',
     'unique'               => ':attribute 已经存在。',
     'url'                  => ':attribute 格式不正确。',
+    'captcha'              => '验证码 不正确',
+    'captcha_required'     => '验证码 不能为空',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

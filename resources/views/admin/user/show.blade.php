@@ -115,7 +115,7 @@
                   <div class="form-actions">
                       <div class="row">
                           <div class="col-md-offset-2 col-md-10">
-                              <a href="{{url('admin/user')}}" class="btn default">{{trans('crud.back')}}</a>
+                              <a href="{{url()->previous()}}" class="btn default">{{trans('crud.back')}}</a>
                           </div>
                       </div>
                   </div>

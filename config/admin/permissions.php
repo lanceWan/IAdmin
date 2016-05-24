@@ -34,5 +34,6 @@ return[
 		'create' 	=> 'admin.menus.create',
 		'edit' 		=> 'admin.menus.edit',
 		'destory' 	=> 'admin.menus.delete',
+		'list' 		=> 'admin.menus.list',
 	],
 ];

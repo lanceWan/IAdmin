@@ -12,6 +12,16 @@ use App\Http\Requests\ResetPasswordRequest;
 use App\Http\Requests\UpdateUserRequest;
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('checkPermission:'.config('admin.permissions.user.list'), ['only' => ['index', 'ajaxIndex']]);
+        $this->middleware('checkPermission:'.config('admin.permissions.user.create'), ['only' => ['create', 'store']]);
+        $this->middleware('checkPermission:'.config('admin.permissions.user.edit'), ['only' => ['edit', 'update']]);
+        $this->middleware('checkPermission:'.config('admin.global.user.action').',true', ['only' => ['mark']]);
+        $this->middleware('checkPermission:'.config('admin.permissions.user.destory'), ['only' => ['destroy']]);
+        $this->middleware('checkPermission:'.config('admin.permissions.user.show'), ['only' => ['show']]);
+        $this->middleware('checkPermission:'.config('admin.permissions.user.reset'), ['only' => ['changePassword','resetPassword']]);
+    }
 	/**
      * 用户列表
      * @author 晚黎

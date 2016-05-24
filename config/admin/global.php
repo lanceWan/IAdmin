@@ -12,7 +12,7 @@ return[
 	 * destory 	彻底删除
 	 */
 	'status' => [
-		'audit' => 0,
+		'audit' => 3,
 		'active' => 1,
 		'ban' => 2,
 		'trash' => 99,
@@ -52,10 +52,30 @@ return[
 		// trait 中的 action 参数
 		'action' => 'user',
 	],
-	'chat' => [
-		'appKey' => 'mgb7ka1nbtqzg',
-		'serverUrl' => 'https://api.cn.ronghub.com',
-		'appSecret' => 'i4XXcGRELqb7',
-		'format' => 'json',
+	////////
+	//标签//
+	////////
+	'tag' => [
+		// 控制是否显示查看按钮
+		'show' => false,
+		// trait 中的 action 参数
+		'action' => 'tag',
+	],
+	////////
+	//文章//
+	////////
+	'article' => [
+		// 控制是否显示查看按钮
+		'show' => true,
+		// trait 中的 action 参数
+		'action' => 'article',
+	],
+	// 七牛图片上传路径
+	'imagePath' => 'iwanli/image/',
+	// 每页显示条数
+	'paginate' => 6,
+	// 缓存
+	'cache' => [
+		'menu' => 'menuList',
 	]
 ];

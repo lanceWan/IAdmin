@@ -6,3 +6,5 @@ Homestead.json
 .env
 /public/uploads
 .tags*
+.DS_Store
+/bootstrap

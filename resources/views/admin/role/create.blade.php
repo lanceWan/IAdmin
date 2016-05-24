@@ -155,7 +155,7 @@
                   <div class="form-actions">
                       <div class="row">
                           <div class="col-md-offset-2 col-md-10">
-                              <a href="{{url('admin/role')}}" class="btn default">{{trans('crud.cancel')}}</a>
+                              <a href="{{url()->previous()}}" class="btn default">{{trans('crud.cancel')}}</a>
                               <button type="submit" class="btn blue">{{trans('crud.submit')}}</button>
                           </div>
                       </div>

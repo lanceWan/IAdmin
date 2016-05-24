@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
+use Captcha;
 
 class AuthController extends Controller
 {
@@ -78,10 +79,13 @@ class AuthController extends Controller
      */
     protected function validateLogin(Request $request)
     {
-        return Validator::make($request->all(), [
+        $this->validate($request,[
             'email' => 'required',
             'password' => 'required',
-            'captcha' => 'required|captcha'
-        ]);
+            'captcha' => 'required|captcha'  
+            ],[
+            'captcha.captcha' => trans('validation.captcha'),
+            'captcha.required' => trans('validation.captcha_required'),
+            ]);
     }
 }

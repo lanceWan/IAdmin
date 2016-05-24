@@ -1,17 +1,18 @@
 @extends('layouts.login')
 
 @section('content')
+@if (isset($errors) && count($errors) > 0 )
+<div class="alert alert-danger">
+    <!-- <button class="close" data-close="alert"></button> -->
+    @foreach($errors->all() as $error)
+        <span class="help-block"><strong>{{ $error }}</strong></span>
+    @endforeach
+</div>
+@endif
 <form class="login-form" action="{{url('/login')}}" method="post">
     {!! csrf_field() !!}
     <h3 class="form-title">Sign In</h3>
-    @if (isset($errors) && count($errors) > 0 )
-    <div class="alert alert-danger">
-        <button class="close" data-close="alert"></button>
-        @foreach($errors->all() as $error)
-            <span class="help-block"><strong>{{ $error }}</strong></span>
-        @endforeach
-    </div>
-    @endif
+    
     <div class="form-group">
         <label class="control-label visible-ie8 visible-ie9">{{trans('auth.email')}}</label>
         <input class="form-control form-control-solid placeholder-no-fix" type="text" placeholder="email" name="email" value="{{old('email')}}" /> </div>

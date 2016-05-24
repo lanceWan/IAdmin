@@ -21,6 +21,58 @@ class MenusTableSeeder extends Seeder
         $index->description = "后台首页";
         $index->save();
 
+        /**
+         * -------------------------------------------------
+         * 博客管理
+         * -------------------------------------------------
+         */
+
+        $blog = new Menu;
+        $blog->name = "博客管理";
+        $blog->pid = 0;
+        $blog->language = "zh";
+        $blog->icon = "fa fa-diamond";
+        $blog->slug = "admin.systems.blog";
+        $blog->url = "admin/cate*,admin/article*,admin/tag*";
+        $blog->description = "博客管理";
+        $blog->save();
+
+        $categories = new Menu;
+        $categories->name = "分类管理";
+        $categories->pid = $blog->id;
+        $categories->language = "zh";
+        $categories->icon = "fa fa-cloud";
+        $categories->slug = "admin.categories.list";
+        $categories->url = "admin/cate";
+        $categories->description = "分类管理";
+        $categories->save();
+
+        $article = new Menu;
+        $article->name = "文章管理";
+        $article->pid = $blog->id;
+        $article->language = "zh";
+        $article->icon = "fa fa-file-text";
+        $article->slug = "admin.articles.list";
+        $article->url = "admin/article";
+        $article->description = "文章管理";
+        $article->save();
+
+        $tags = new Menu;
+        $tags->name = "标签管理";
+        $tags->pid = $blog->id;
+        $tags->language = "zh";
+        $tags->icon = "fa fa-tags";
+        $tags->slug = "admin.tags.list";
+        $tags->url = "admin/tag";
+        $tags->description = "标签管理";
+        $tags->save();
+
+        /**
+         * -------------------------------------------------
+         * 系统管理
+         * -------------------------------------------------
+         */
+
         $system = new Menu;
         $system->name = "系统管理";
         $system->pid = 0;
@@ -82,6 +134,8 @@ class MenusTableSeeder extends Seeder
         $menu->url = "admin/menu";
         $menu->description = "显示菜单管理";
         $menu->save();
+
+        
 
     }
 }

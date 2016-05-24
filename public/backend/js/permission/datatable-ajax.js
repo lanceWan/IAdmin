@@ -55,7 +55,7 @@ var TableDatatablesAjax = function() {
           render:function(data){
             if (data == 1) {
               return '<span class="label label-success"> 正常 </span>';
-            }else if(data == 0){
+            }else if(data == 3){
               return '<span class="label label-warning"> 待审核 </span>';
             }else{
               return '<span class="label label-danger"> 禁用 </span>';

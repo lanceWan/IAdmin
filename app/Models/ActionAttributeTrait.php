@@ -92,9 +92,9 @@ trait ActionAttributeTrait{
 	 * @date   2016-03-10T10:08:20+0800
 	 * @return [type]                   [description]
 	 */
-	public function getDestoryActionButton()
+	public function getDestoryActionButton($showType = true)
 	{
-		if (($this->status == config('admin.global.status.trash'))) {
+		if (($this->status == config('admin.global.status.trash')) || $showType == false) {
 			if (Auth::user()->can(config('admin.permissions.'.$this->action.'.destory'))) {
 				return '<a href="javascript:;" onclick="return false" class="btn btn-xs btn-danger tooltips" data-container="body" data-original-title="' . trans('crud.destory') . '"  data-placement="top" id="destory"><i class="fa fa-trash"></i><form action="'.url('admin/'.$this->action.'/'.$this->id).'" method="POST" name="delete_item" style="display:none"><input type="hidden" name="_method" value="delete"><input type="hidden" name="_token" value="'.csrf_token().'"></form></a>';
 			}
@@ -127,6 +127,6 @@ trait ActionAttributeTrait{
 				$this->getUndoActionButton().
 				$this->getAuditActionButton().
 				$this->getTrashActionButton().
-				$this->getDestoryActionButton();
+				$this->getDestoryActionButton($showType);
 	}
 }
