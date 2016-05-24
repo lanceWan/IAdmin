@@ -2,6 +2,8 @@
 
 基于`Laravel5.2`的后台管理系统，实现最基本的后台框架：权限、角色、菜单、用户、日志功能，后台主题是用的[metronic主题](http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes)，本人代码完全开源，至于主题只供学习交流。如需商业应用请自行购买授权！
 
+![iadmin](http://cache.iwanli.me/iwanli/imageiadmin.png)
+
 ## 安装
 
 > 我习惯把缓存用 Redis 来存储，如果有朋友不想安装 Reids ，请将项目安装时 .env 文件中的 CACHE_DRIVER=file 默认配置即可。
