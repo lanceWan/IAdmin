@@ -17,8 +17,8 @@ class UserRepository
 	public function ajaxIndex()
 	{
 		$draw = request('draw', 1);/*获取请求次数*/
-		$start = request('start', config('admin.golbal.list.start')); /*获取开始*/
-		$length = request('length', config('admin.golbal.list.length')); ///*获取条数*/
+		$start = request('start', config('admin.global.list.start')); /*获取开始*/
+		$length = request('length', config('admin.global.list.length')); ///*获取条数*/
 
 		$search_pattern = request('search.regex', true); /*是否启用模糊搜索*/
 		
